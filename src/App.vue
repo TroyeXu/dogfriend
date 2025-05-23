@@ -61,6 +61,7 @@
                 </q-item-section>
                 <q-item-section side>
                   <q-checkbox
+                    @click="toggleItem(item)"
                     v-model="selectedItems"
                     :val="item"
                     color="primary"
