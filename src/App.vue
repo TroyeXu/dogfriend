@@ -414,7 +414,10 @@
                   </div>
                   
                   <div class="text-subtitle1 q-mt-sm text-primary text-center">
-                    預計費用：{{ formatCurrency(hourlyTotalWithTime) }} 元 ({{ dayCount }} 天 x {{ hourCount }} 時/天)
+                    預計費用：{{ formatCurrency(hourlyTotalWithTime) }} 元 
+                    <div class="text-caption text-grey text-center">
+                      (服務項目 {{ formatCurrency(selectedHourlyItems.reduce((sum, item) => item.subCategory === '時段加價' ? sum : sum + item.price, 0)) }} 元 x {{ hourCount }} 時 x {{ dayCount }} 天 + 加價項目 {{ formatCurrency(selectedHourlyItems.reduce((sum, item) => item.subCategory === '時段加價' ? sum + item.price : sum, 0) * dayCount) }} 元)
+                    </div>
                   </div>
                     </div>
                   </q-slide-transition>
@@ -469,7 +472,10 @@
                       </div>
                       
                       <div class="text-subtitle1 q-mt-sm text-primary text-center">
-                        預計費用：{{ formatCurrency(shiftTotalWithDays) }} 元 ({{ shiftDayCount }} 天)
+                        預計費用：{{ formatCurrency(shiftTotalWithDays) }} 元 
+                        <div class="text-caption text-grey text-center">
+                          (服務項目 {{ formatCurrency(selectedShiftItems.reduce((sum, item) => sum + item.price, 0) + (selectedShiftType === 'SH01' ? 3000 : 5500)) }} 元 x {{ shiftDayCount }} 天)
+                        </div>
                       </div>
                     </div>
                   </q-slide-transition>
@@ -477,14 +483,7 @@
               </q-card-section>
               
               <q-card-section>
-                <div class="text-center q-mb-md">
-                  <div class="text-h5 text-weight-bold text-primary">
-                    <q-icon name="paid" /> {{ formatCurrency(totalCost) }} 元
-                  </div>
-                  <div class="text-caption text-grey">
-                    已選 {{ selectedItems.length }} 項服務
-                  </div>
-                </div>
+              
                 
                 <!-- 圓餅圖 (使用 vue-chartjs) -->
                 <div class="chart-container">
@@ -508,6 +507,18 @@
                     </q-item-section>
                     <q-item-section side>
                       {{ formatCurrency(item.price) }} 元
+                    </q-item-section>
+                  </q-item>
+                  <q-separator class="q-my-sm" />
+                  <q-item>
+                    <q-item-section>
+                      <q-item-label class="text-weight-bold">服務項目總金額</q-item-label>
+                      <div class="text-caption text-grey">
+                        已選 {{ selectedItems.length }} 項服務
+                      </div>
+                    </q-item-section>
+                    <q-item-section side>
+                      <span class="text-weight-bold text-primary">{{ formatCurrency(selectedItems.reduce((sum, item) => sum + item.price, 0)) }} 元</span>
                     </q-item-section>
                   </q-item>
                 </q-list>
