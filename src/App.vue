@@ -1,10 +1,13 @@
 <template>
   <q-layout view="hHh LpR fff">
+    <!-- 防止 iOS 輸入時螢幕放大 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <!-- 粒子背景 -->
     <vue-particles
       id="tsparticles"
       class="particles-container"
       :options="particlesOptions"
+      z
       :particlesLoaded="particlesLoaded"
     />
     
@@ -143,6 +146,39 @@
 
               <!-- 服務項目列表 -->
               <q-card-section>
+                <!-- 包班制班次選擇 -->
+                <div v-if="selectedCategory === '包班制'" class="q-mb-md">
+                  <div class="text-subtitle1 q-mb-sm">選擇班次</div>
+                  <div class="row q-col-gutter-md">
+                    <div class="col-12 col-sm-6" v-for="item in shiftTypeItems" :key="item.code">
+                      <q-card 
+                        :class="{'shift-card': true, 'shift-card-selected': isSelected(item)}"
+                        clickable
+                        @click="selectShiftType(item)"
+                      >
+                        <q-card-section class="q-py-sm">
+                          <div class="row items-center">
+                            <div class="col-auto">
+                              <q-icon :name="item.icon" :color="getItemColor(item)" size="md" />
+                            </div>
+                            <div class="col q-ml-sm">
+                              <div class="text-subtitle2">{{ item.name }}</div>
+                              <div class="text-caption">
+                                <q-icon name="paid" size="xs" color="primary" class="q-mr-xs" />
+                                <span>{{ formatCurrency(item.price) }} 元/班</span>
+                              </div>
+                            </div>
+                            <div class="col-auto">
+                              <q-radio v-model="selectedShiftType" :val="item.code" color="primary" />
+                            </div>
+                          </div>
+                        </q-card-section>
+                      </q-card>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="text-subtitle1 q-mb-sm">{{ selectedCategory === '包班制' ? '選擇附加服務' : '選擇服務項目' }}</div>
                 <q-list bordered separator class="rounded-borders">
                   <transition-group name="list" tag="div">
                     <q-item
@@ -194,7 +230,7 @@
             <q-card class="summary-card" flat bordered>
               <q-card-section>
                 <div class="text-h6 text-primary">
-                  <q-icon name="summarize" /> 服務摘要
+                  <q-icon name="summarize" /> 費用統計
                 </div>
                 <!-- 預算設定和即時費用計算器 -->
                 <div class="q-mt-md">
@@ -228,7 +264,7 @@
                 <!-- 即時費用計算器（鐘點制） -->
                 <div v-if="selectedCategory === '鐘點制'" class="q-mt-md">
                   <div class="row items-center justify-between">
-                    <div class="text-subtitle2">小時/天數選擇</div>
+                    <div class="text-subtitle2">服務時間設定</div>
                     <q-btn
                       flat
                       dense
@@ -276,7 +312,7 @@
                   
                   <!-- 快速選擇小時數 -->
                   <div class="q-mb-sm">
-                    <div class="text-subtitle2 q-mb-xs">每天小時數</div>
+                    <div class="text-subtitle2 q-mb-xs">每日服務時數</div>
                     <div class="row justify-between q-col-gutter-xs">
                       <div class="col-2" v-for="hours in [4, 8, 10, 12, 24]" :key="hours">
                         <q-btn 
@@ -387,7 +423,7 @@
                 <!-- 包班制天數計算器 -->
                 <div v-if="selectedCategory === '包班制'" class="q-mt-md">
                   <div class="row items-center justify-between">
-                    <div class="text-subtitle2">包班天數計算</div>
+                    <div class="text-subtitle2">包班時間設定</div>
                     <q-btn
                       flat
                       dense
@@ -400,7 +436,7 @@
                     <div v-show="showShiftCalculator" class="q-mt-sm">
                       <!-- 包班制天數選擇 -->
                       <div class="q-mb-sm">
-                        <div class="text-subtitle2 q-mb-xs">天數選擇</div>
+                        <div class="text-subtitle2 q-mb-xs">包班天數</div>
                         <div class="row q-col-gutter-xs">
                           <div class="col-auto" v-for="days in [1, 3, 5, 7, 14]" :key="days">
                             <q-btn 
@@ -476,10 +512,6 @@
                   </q-item>
                 </q-list>
               </q-card-section>
-              
-
-              
-
             </q-card>
           </div>
         </div>
@@ -591,20 +623,21 @@ const careItems = ref([
 const selectedHourlyItems = ref(careItems.value.filter(item => item.selectedByDefault && item.category === '鐘點制'))
 const selectedShiftItems = ref([])
 const selectedCategory = ref('鐘點制')
+const selectedShiftType = ref('SH01') // 預設選擇12小時班
 const searchText = ref('')
 const showHelp = ref(false)
 const previousTotalCost = ref(0)
 const totalCostElement = ref(null)
 const particleContainer = ref(null)
-const budget = ref(5000) // 預設預算為 5000 元
+const budget = ref(10000) // 預設預算為 3000 元
 const hourCount = ref(1) // 鐘點制小時數
 const dayCount = ref(1) // 鐘點制天數
 const shiftDayCount = ref(1) // 包班制天數
 
 // 收合/展開狀態
 const showFilters = ref(false)
-const showCalculator = ref(true)
-const showShiftCalculator = ref(true)
+const showCalculator = ref(false)
+const showShiftCalculator = ref(false)
 const showAdditionalItems = ref(true)
 
 const isNightShift = ref(false) // 是否為夜班時段
@@ -714,12 +747,23 @@ const availableSubCategories = computed(() => {
   return [...new Set(subCategories)]
 })
 
+// 班次選項
+const shiftTypeItems = [
+  { code: 'SH01', name: '12小時/班', price: 3000, category: '包班制', subCategory: '基本班次', icon: 'schedule', color: 'primary' },
+  { code: 'SH02', name: '24小時/班', price: 5500, category: '包班制', subCategory: '基本班次', icon: 'access_time_filled', color: 'secondary' }
+];
+
 const filteredItems = computed(() => {
   return careItems.value.filter(item => {
     const matchCategory = item.category === selectedCategory.value
     let matchSearch = true
     let matchPrice = true
     let matchSubCategory = true
+    
+    // 如果是包班制，只顯示特殊需求項目，不顯示基本班次項目
+    if (selectedCategory.value === '包班制' && item.subCategory === '基本班次') {
+      return false;
+    }
     
     // 處理搜尋邏輯
     if (searchText.value) {
@@ -744,8 +788,17 @@ const filteredItems = computed(() => {
 const shiftTotalWithDays = computed(() => {
   if (selectedCategory.value !== '包班制') return 0
   
-  // 包班制費用 = 平均每班費用 * 天數
-  return selectedShiftItems.value.reduce((sum, item) => sum + (item.price * shiftDayCount.value), 0)
+  // 基本班次費用
+  let basePrice = 0;
+  if (selectedShiftType.value === 'SH01') {
+    basePrice = 3000; // 12小時班費用
+  } else if (selectedShiftType.value === 'SH02') {
+    basePrice = 5500; // 24小時班費用
+  }
+  
+  // 包班制費用 = 班次基本費用 * 天數 + 附加服務費用 * 天數
+  const additionalServices = selectedShiftItems.value.reduce((sum, item) => sum + item.price, 0);
+  return (basePrice + additionalServices) * shiftDayCount.value;
 })
 
 const totalCost = computed(() => {
@@ -938,10 +991,18 @@ function isSelected(item) {
   return selectedItems.value.some(i => i.code === item.code)
 }
 
+// 選擇班次類型
+function selectShiftType(item) {
+  selectedShiftType.value = item.code;
+  // 播放點擊音效
+  playClickSound();
+}
+
 function resetSelections() {
   // 重置為初始狀態，保留必選項目
   selectedHourlyItems.value = careItems.value.filter(item => item.selectedByDefault && item.category === '鐘點制')
   selectedShiftItems.value = []
+  selectedShiftType.value = 'SH01' // 重置為12小時班
   searchText.value = ''
   
   // 重置所有篩選條件
@@ -956,15 +1017,6 @@ function resetSelections() {
   dayCount.value = 1
   hourCount.value = 1
   shiftDayCount.value = 1
-  
-  // 顯示重置通知
-  $q.notify({
-    message: '已重置所有選擇和篩選',
-    color: 'primary',
-    icon: 'refresh',
-    position: 'top',
-    timeout: 2000
-  })
 }
 
 // 統一的篩選應用函數
@@ -1447,6 +1499,16 @@ onMounted(() => {
   width: 100%;
   max-width: 250px;
   margin: 0 auto;
+}
+
+.shift-card {
+  border: 1px solid #e0e0e0;
+  transition: all 0.3s ease;
+}
+
+.shift-card-selected {
+  border: 2px solid #1976d2;
+  box-shadow: 0 3px 8px rgba(25, 118, 210, 0.2);
 }
 
 /* 總費用顯示樣式 */
