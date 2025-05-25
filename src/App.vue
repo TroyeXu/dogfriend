@@ -1256,16 +1256,7 @@ watch(isDoubleUrgent, (newVal) => {
 
 // 生命週期鎖子
 onMounted(() => {
-  // 初始化通知
-  $q.notify({
-    message: '歡迎使用專業護理服務計費系統',
-    caption: '點擊服務項目可選擇或取消選擇',
-    color: 'primary',
-    icon: 'medical_services',
-    position: 'top',
-    timeout: 3000
-  })
-  
+ 
   // 為每個項目添加自定義屬性，用於 GSAP 動畫
   setTimeout(() => {
     document.querySelectorAll('.service-item').forEach(item => {
