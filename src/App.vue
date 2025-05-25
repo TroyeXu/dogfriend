@@ -895,8 +895,6 @@ function toggleItem(item) {
   const targetArray = selectedCategory.value === '鐘點制' ? selectedHourlyItems : selectedShiftItems
   const index = targetArray.value.findIndex(i => i.code === item.code)
   
-  // 播放點擊音效
-  playClickSound()
   
   // 取得點擊位置，用於粒子效果
   const clickEvent = window.event
@@ -994,8 +992,6 @@ function isSelected(item) {
 // 選擇班次類型
 function selectShiftType(item) {
   selectedShiftType.value = item.code;
-  // 播放點擊音效
-  playClickSound();
 }
 
 function resetSelections() {
@@ -1122,26 +1118,7 @@ function getItemColor(item) {
   return item.color || 'primary'
 }
 
-function playClickSound() {
-  // 使用 Web Audio API 播放輕微點擊音效
-  try {
-    const audioContext = new (window.AudioContext || window.webkitAudioContext)()
-    const oscillator = audioContext.createOscillator()
-    const gainNode = audioContext.createGain()
-    
-    oscillator.type = 'sine'
-    oscillator.frequency.value = 800
-    gainNode.gain.value = 0.1
-    
-    oscillator.connect(gainNode)
-    gainNode.connect(audioContext.destination)
-    
-    oscillator.start()
-    oscillator.stop(audioContext.currentTime + 0.05)
-  } catch (e) {
-    console.log('音效播放失敗', e)
-  }
-}
+
 
 
 
