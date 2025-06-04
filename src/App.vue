@@ -1,15 +1,6 @@
 <template>
   <q-layout view="hHh LpR fff">
-    <!-- 防止 iOS 輸入時螢幕放大 -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <!-- 粒子背景 -->
-    <vue-particles
-      id="tsparticles"
-      class="particles-container"
-      :options="particlesOptions"
-      z
-      :particlesLoaded="particlesLoaded"
-    />
+  
     
     <!-- 漸變背景的頁首 -->
     <q-header elevated class="header-gradient text-white">
@@ -29,19 +20,37 @@
             <q-card class="main-card" flat bordered>
               <!-- 篩選器區域 -->
               <q-card-section>
-                <q-tabs
-                  v-model="selectedCategory"
-                  class="category-tabs"
-                  active-color="primary"
-                  indicator-color="primary"
-                  align="justify"
-                  narrow-indicator
-                  outside-arrows
-                  mobile-arrows
-                >
-                  <q-tab name="鐘點制" label="鐘點制" icon="schedule" />
-                  <q-tab name="包班制" label="包班制" icon="work" />
-                </q-tabs>
+                <!-- 服務類型選擇 -->
+                <div class="service-type-selector q-mb-md">
+                  <div class="row no-wrap">
+                    <div class="col text-center">
+                      <q-btn 
+                        :color="selectedCategory === '鐘點制' ? 'primary' : 'grey-5'"
+                        :text-color="selectedCategory === '鐘點制' ? 'white' : 'grey-8'"
+                        class="service-type-btn"
+                        size="lg"
+                        no-caps
+                        unelevated
+                        @click="selectedCategory = '鐘點制'"
+                      >
+                        鐘點制
+                      </q-btn>
+                    </div>
+                    <div class="col text-center">
+                      <q-btn 
+                        :color="selectedCategory === '包班制' ? 'secondary' : 'grey-5'"
+                        :text-color="selectedCategory === '包班制' ? 'white' : 'grey-8'"
+                        class="service-type-btn"
+                        size="lg"
+                        no-caps
+                        unelevated
+                        @click="selectedCategory = '包班制'"
+                      >
+                        包班制
+                      </q-btn>
+                    </div>
+                  </div>
+                </div>
 
                 <div class="row q-mt-md q-col-gutter-sm">
                   <div class="col-12 col-sm-8">
@@ -184,9 +193,13 @@
                     <q-item
                       v-for="item in filteredItems"
                       :key="item.code"
-                      clickable
+                      :clickable="!(selectedCategory === '鐘點制' && !isSelected(item) && wouldExceedLimit(item))"
                       @click="toggleItem(item)"
-                      :class="{ 'selected-item': isSelected(item), 'mandatory-item': item.code === 'HR01' }"
+                      :class="{ 
+                        'selected-item': isSelected(item), 
+                        'mandatory-item': item.code === 'HR01',
+                        'disabled-item': selectedCategory === '鐘點制' && !isSelected(item) && wouldExceedLimit(item)
+                      }"
                       class="service-item q-pa-md"
                       v-ripple
                       v-show="!(selectedCategory === '鐘點制' && item.subCategory === '時段加價')"
@@ -214,7 +227,7 @@
                           v-model="selectedItems"
                           :val="item"
                           color="primary"
-                          :disable="item.code === 'HR01' && !isSelected(item)"
+                          :disable="(item.code === 'HR01' && !isSelected(item)) || (selectedCategory === '鐘點制' && !isSelected(item) && wouldExceedLimit(item))"
                           :aria-label="`選擇 ${item.name}`"
                         />
                       </q-item-section>
@@ -232,34 +245,7 @@
                 <div class="text-h6 text-primary">
                   <q-icon name="summarize" /> 費用統計
                 </div>
-                <!-- 預算設定和即時費用計算器 -->
-                <div class="q-mt-md">
-                  <q-input
-                    v-model.number="budget"
-                    type="number"
-                    label="設定預算 (元)"
-                    outlined
-                    dense
-                    :rules="[val => val >= 0 || '請輸入有效預算']"
-                  >
-                    <template v-slot:prepend>
-                      <q-icon name="account_balance_wallet" color="primary" />
-                    </template>
-                  </q-input>
-                  <!-- 預算進度條 -->
-                  <div class="q-mt-sm">
-                    <q-linear-progress
-                      :value="totalCost / (budget > 0 ? budget : 1)"
-                      :color="getBudgetColor"
-                      size="10px"
-                      rounded
-                    />
-                    <div class="row justify-between q-mt-xs">
-                      <div class="text-caption">0 元</div>
-                      <div class="text-caption">{{ budget }} 元</div>
-                    </div>
-                  </div>
-                </div>
+                <!-- 移除小費設定，已移動到最下方 -->
                 
                 <!-- 即時費用計算器（鐘點制） -->
                 <div v-if="selectedCategory === '鐘點制'" class="q-mt-md">
@@ -521,6 +507,48 @@
                       <span class="text-weight-bold text-primary">{{ formatCurrency(selectedItems.reduce((sum, item) => sum + item.price, 0)) }} 元</span>
                     </q-item-section>
                   </q-item>
+                  
+             
+                  <q-separator class="q-my-sm" />
+
+                  <!-- 總計金額 -->
+                  <q-item>
+                    <q-item-section>
+                      <q-item-label class="text-weight-bold text-h6">總計金額</q-item-label>
+                    </q-item-section>
+                    <q-item-section side>
+                      <span class="text-weight-bold text-h6 text-primary">{{ formatCurrency(totalCost + tipAmount) }} 元</span>
+                    </q-item-section>
+                  </q-item>
+                                         <!-- 小費設定 -->
+                  <q-item>
+                    <q-item-section>
+                      <div class="row items-center">
+                        <q-icon name="volunteer_activism" color="pink-6" class="q-mr-sm" />
+                        <span>小費金額</span>
+                      </div>
+                    </q-item-section>
+                    <q-item-section side>
+                      <div class="row items-center">
+                        <q-btn round flat dense icon="remove" @click="tipAmount = Math.max(0, tipAmount - 50)" color="grey" class="q-mr-xs" />
+                        <q-input 
+                          v-model.number="tipAmount" 
+                          type="number" 
+                          dense 
+                          outlined 
+                          class="tip-input-inline" 
+                          style="width: 100px"
+                          :rules="[val => val >= 0 || '請輸入有效金額']"
+                        >
+                          <template v-slot:append>
+                            <span class="text-grey-8">元</span>
+                          </template>
+                        </q-input>
+                        <q-btn round flat dense icon="add" @click="tipAmount += 50" color="pink-6" class="q-ml-xs" />
+                      </div>
+                    </q-item-section>
+                  </q-item>
+                  
                 </q-list>
               </q-card-section>
             </q-card>
@@ -529,26 +557,33 @@
       </q-page>
     </q-page-container>
 
-    <q-footer elevated class="footer-gradient text-white">
-      <q-toolbar>
+    <q-footer elevated class="footer-gradient text-white" style="min-height: 64px">
+      <q-toolbar style="height: 5rem">
         <q-toolbar-title>
-          <div class="row items-center no-wrap">
-            <div class="col-auto">
-              <div class="text-h6">
-                總費用：<span ref="totalCostElement" class="cost-display" :class="{ 'exceeded': totalCost > budget }">{{ formatCurrency(totalCost) }}</span> 元
+          <div class="row items-center" style="width: 100%">
+            <div class="col-grow" style="white-space: nowrap">
+              <div class="column" style="line-height: 1.5">
+                <div class="row items-center">
+                  <span class="text-subtitle1">總費用：</span>
+                  <span ref="totalCostElement" class="text-h5 cost-display">{{ formatCurrency(totalCost + tipAmount) }}</span>
+                  <span v-if="selectedCategory === '鐘點制'" class="text-subtitle1" style="margin-left: 8px">
+                    ({{ hourCount * dayCount }} 小時)
+                  </span>
+                  <span class="text-subtitle1">元</span>
+                  <q-badge v-if="tipAmount > 0" color="pink-6" class="q-ml-sm" style="padding: 4px 8px">
+                    含小費 {{ formatCurrency(tipAmount) }} 元
+                  </q-badge>
+                </div>
+                <div v-if="selectedCategory === '鐘點制'" class="row items-center q-mt-xs">
+                  <span class="text-caption text-grey-7">每小時上限500元</span>
+                </div>
               </div>
-            </div>
-            
-            <div class="col-auto q-ml-sm" v-if="totalCost > budget">
-              <q-badge color="negative">
-                超出預算 {{ formatCurrency(totalCost - budget) }} 元
-              </q-badge>
             </div>
           </div>
         </q-toolbar-title>
-        <q-btn flat round icon="help" @click="showHelp = true">
-          <q-tooltip>幫助</q-tooltip>
-        </q-btn>
+        
+
+       
       </q-toolbar>
     </q-footer>
     
@@ -640,7 +675,7 @@ const showHelp = ref(false)
 const previousTotalCost = ref(0)
 const totalCostElement = ref(null)
 const particleContainer = ref(null)
-const budget = ref(10000) // 預設預算為 3000 元
+const tipAmount = ref(0) // 小費金額
 const hourCount = ref(1) // 鐘點制小時數
 const dayCount = ref(1) // 鐘點制天數
 const shiftDayCount = ref(1) // 包班制天數
@@ -722,30 +757,40 @@ const selectedItems = computed(() =>
   selectedCategory.value === '鐘點制' ? selectedHourlyItems.value : selectedShiftItems.value
 )
 
+// 計算鐘點制每小時費用是否達到上限
+const hourlyRate = computed(() => {
+  if (selectedCategory.value !== '鐘點制') return 0
+  
+  return selectedHourlyItems.value.reduce((sum, item) => {
+    return item.subCategory === '時段加價' ? sum : sum + item.price
+  }, 0)
+})
+
+// 判斷是否達到鐘點制上限 (不含小費)
+const hourlyRateReachedLimit = computed(() => {
+  return hourlyRate.value >= 500
+})
+
+// 移除500元限制，永遠返回false
+function wouldExceedLimit(item) {
+  return false;
+}
+
 // 鐘點制費用計算（考慮小時數和天數）
 const hourlyTotalWithTime = computed(() => {
   if (selectedCategory.value !== '鐘點制') return 0
   
   // 基本費用（每項服務的價格）
-  let baseTotal = selectedHourlyItems.value.reduce((sum, item) => {
+  return selectedHourlyItems.value.reduce((sum, item) => {
     // 時段加價項目不要乘以小時數
     if (item.subCategory === '時段加價') {
       return sum + (item.price * dayCount.value)
     }
     return sum + (item.price * hourCount.value * dayCount.value)
   }, 0)
-  
-  return baseTotal
 })
 
-// 預算顏色計算
-const getBudgetColor = computed(() => {
-  const ratio = totalCost.value / budget.value
-  if (ratio >= 1) return 'negative'
-  if (ratio >= 0.9) return 'warning'
-  if (ratio >= 0.7) return 'orange'
-  return 'positive'
-})
+
 
 // 可用的子類別列表
 const availableSubCategories = computed(() => {
@@ -906,6 +951,20 @@ function toggleItem(item) {
   const targetArray = selectedCategory.value === '鐘點制' ? selectedHourlyItems : selectedShiftItems
   const index = targetArray.value.findIndex(i => i.code === item.code)
   
+  // 如果是鐘點制且要添加非時段加價項目，且選擇後會超過上限，則不允許添加
+  if (selectedCategory.value === '鐘點制' && 
+      index === -1 && 
+      wouldExceedLimit(item)) {
+    // 顯示提示
+    $q.notify({
+      message: '鐘點制服務項目每小時不能超過500元上限',
+      color: 'warning',
+      icon: 'warning',
+      position: 'top',
+      timeout: 2000
+    })
+    return
+  }
   
   // 取得點擊位置，用於粒子效果
   const clickEvent = window.event
@@ -916,7 +975,6 @@ function toggleItem(item) {
   if (index === -1) {
     // 添加項目時的動畫效果
     targetArray.value.push(item)
-    
     
     // 使用 GSAP 對項目元素進行動畫
     const itemElement = document.querySelector(`[data-code="${item.code}"]`)
@@ -1133,26 +1191,9 @@ function getItemColor(item) {
 
 
 
-// 監聽總費用變化，添加動畫效果和預算警示
+// 監聽總費用變化，添加動畫效果
 watch(totalCost, (newVal, oldVal) => {
   previousTotalCost.value = oldVal
-  
-  // 預算警示
-  if (newVal > budget.value) {
-    $q.notify({
-      message: `總費用 (${newVal} 元) 已超過預算 (${budget.value} 元)！`,
-      color: 'negative',
-      icon: 'warning',
-      timeout: 3000
-    })
-  } else if (newVal > budget.value * 0.9 && newVal <= budget.value) {
-    $q.notify({
-      message: `總費用 (${newVal} 元) 接近預算上限 (${budget.value} 元)。`,
-      color: 'warning',
-      icon: 'warning',
-      timeout: 2000
-    })
-  }
   
   // 使用 GSAP 實現數字變化動畫
   if (totalCostElement.value) {
@@ -1404,6 +1445,24 @@ onMounted(() => {
   transform: scale(1.01);
 }
 
+/* 服務類型卡片樣式 */
+.service-type-card {
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  height: 100%;
+}
+
+.service-type-selected {
+  border-color: currentColor;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.service-type-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
 /* 服務項目樣式 */
 .service-item {
   border-radius: 8px;
@@ -1425,6 +1484,16 @@ onMounted(() => {
 
 .mandatory-item {
   background-color: rgba(76, 175, 80, 0.08);
+}
+
+.disabled-item {
+  opacity: 0.6;
+  cursor: not-allowed !important;
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+.disabled-item:hover {
+  transform: none !important;
 }
 
 /* 小時按鈕樣式 */
@@ -1498,10 +1567,7 @@ onMounted(() => {
   animation: pulse 0.5s ease;
 }
 
-.cost-display.exceeded {
-  color: #f44336;
-  animation: shake 0.5s;
-}
+
 
 @keyframes shake {
   0%, 100% { transform: translateX(0); }
