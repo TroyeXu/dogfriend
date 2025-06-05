@@ -1,7 +1,9 @@
 <template>
   <div class="page">
-    <h2>聯繫方式</h2>
-    <p>這裡提供聯繫方式的簡單資訊。</p>
+    <h2>聯繫我們</h2>
+    <p>電話：02-1234-5678</p>
+    <p>Email：service@example.com</p>
+    <p>如有任何問題，歡迎來信或來電洽詢。</p>
   </div>
 </template>
 
