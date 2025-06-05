@@ -1,13 +1,14 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Home from '../pages/Home.vue'
-import Calculator from '../pages/Calculator.vue'
+import Calculator from '../views/Calculator.vue'
+import CaregiverList from '../views/CaregiverList.vue'
+import CaregiverDetail from '../views/CaregiverDetail.vue'
 
 const routes = [
-  { path: '/', name: 'home', component: Home },
-  { path: '/calculator', name: 'calculator', component: Calculator }
+  { path: '/', name: 'calculator', component: Calculator },
+  { path: '/caregivers', name: 'caregivers', component: CaregiverList },
+  { path: '/caregivers/:id', name: 'caregiver-detail', component: CaregiverDetail }
 ]
-
-export default createRouter({
-  history: createWebHistory(),
+const router = createRouter({
+  history: createWebHistory('/dogfriend/'),  // 添加基礎路徑
   routes
 })
