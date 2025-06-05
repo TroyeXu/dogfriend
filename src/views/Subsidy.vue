@@ -1,15 +1,34 @@
 <template>
-  <div class="page">
-    <h2>補助與保險資訊</h2>
-    <p>這裡整理政府補助與保險相關連結，方便雇主查詢。</p>
-  </div>
+  <q-page class="q-pa-md">
+    <q-card flat bordered class="info-card">
+      <q-card-section>
+        <div class="text-h6">補助與保險資訊</div>
+        <q-list bordered class="rounded-borders q-mt-md">
+          <q-item v-for="(item, i) in subsidies" :key="i" clickable>
+            <q-item-section>{{ item.name }}</q-item-section>
+            <q-item-section side>
+              <q-icon name="open_in_new" color="primary" />
+            </q-item-section>
+          </q-item>
+        </q-list>
+      </q-card-section>
+    </q-card>
+  </q-page>
 </template>
 
 <script setup>
+const subsidies = [
+  { name: '長照補助' },
+  { name: '看護保險方案' }
+]
 </script>
 
 <style scoped>
-.page {
-  padding: 1rem;
+.info-card {
+  max-width: 600px;
+  margin: 0 auto;
+}
+.rounded-borders {
+  border-radius: 8px;
 }
 </style>

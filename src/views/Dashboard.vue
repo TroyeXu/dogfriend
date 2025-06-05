@@ -1,15 +1,20 @@
 <template>
-  <div class="page">
-    <h2>用戶儀表板</h2>
-    <p>在此查看個人資料與紀錄。</p>
-  </div>
+  <q-page class="q-pa-md flex flex-center">
+    <q-card flat bordered class="info-card">
+      <q-card-section>
+        <div class="text-h6">用戶儀表板</div>
+        <p>在此查看個人資料與紀錄。</p>
+      </q-card-section>
+    </q-card>
+  </q-page>
 </template>
 
 <script setup>
 </script>
 
 <style scoped>
-.page {
-  padding: 1rem;
+.info-card {
+  max-width: 500px;
+  width: 100%;
 }
 </style>

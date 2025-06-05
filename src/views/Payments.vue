@@ -1,15 +1,20 @@
 <template>
-  <div class="page">
-    <h2>支付紀錄</h2>
-    <p>在此查看支付狀態與歷史。</p>
-  </div>
+  <q-page class="q-pa-md flex flex-center">
+    <q-card flat bordered class="info-card">
+      <q-card-section>
+        <div class="text-h6">支付紀錄</div>
+        <p>在此查看支付狀態與歷史。</p>
+      </q-card-section>
+    </q-card>
+  </q-page>
 </template>
 
 <script setup>
 </script>
 
 <style scoped>
-.page {
-  padding: 1rem;
+.info-card {
+  max-width: 500px;
+  width: 100%;
 }
 </style>

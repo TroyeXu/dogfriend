@@ -1,8 +1,18 @@
 <template>
-  <div class="page">
-    <h2>價格資訊</h2>
-    <q-table :rows="plans" :columns="columns" flat bordered class="q-mt-md" />
-  </div>
+  <q-page class="q-pa-md">
+    <q-card flat bordered class="info-card">
+      <q-card-section>
+        <div class="text-h6">價格資訊</div>
+        <q-table
+          :rows="plans"
+          :columns="columns"
+          flat
+          bordered
+          class="q-mt-md"
+        />
+      </q-card-section>
+    </q-card>
+  </q-page>
 </template>
 
 <script setup>
@@ -19,7 +29,8 @@ const plans = [
 </script>
 
 <style scoped>
-.page {
-  padding: 1rem;
+.info-card {
+  max-width: 600px;
+  margin: 0 auto;
 }
 </style>
