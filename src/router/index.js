@@ -10,7 +10,7 @@ const routes = [
 ]
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory('/dogfriend/'),  // 添加基礎路徑
   routes
 })
 
