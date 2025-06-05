@@ -1,7 +1,9 @@
 <template>
-  <div class="caregiver-list">
-    <CaregiverCard v-for="c in caregivers" :key="c.id" :caregiver="c" />
-  </div>
+  <q-page class="q-pa-md">
+    <div class="caregiver-list">
+      <CaregiverCard v-for="c in caregivers" :key="c.id" :caregiver="c" />
+    </div>
+  </q-page>
 </template>
 
 <script setup>

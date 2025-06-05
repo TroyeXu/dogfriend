@@ -1,18 +1,22 @@
 <template>
-  <div class="page">
-    <h2>用戶評價</h2>
-    <q-list bordered class="rounded-borders">
-      <q-item v-for="(r, i) in reviews" :key="i">
-        <q-item-section>
-          <q-item-label>{{ r.name }}</q-item-label>
-          <q-item-label caption>{{ r.comment }}</q-item-label>
-        </q-item-section>
-        <q-item-section side>
-          <q-rating v-model="r.rating" readonly :max="5" color="amber" />
-        </q-item-section>
-      </q-item>
-    </q-list>
-  </div>
+  <q-page class="q-pa-md">
+    <q-card flat bordered class="info-card">
+      <q-card-section>
+        <div class="text-h6">用戶評價</div>
+        <q-list bordered class="rounded-borders q-mt-md">
+          <q-item v-for="(r, i) in reviews" :key="i">
+            <q-item-section>
+              <q-item-label>{{ r.name }}</q-item-label>
+              <q-item-label caption>{{ r.comment }}</q-item-label>
+            </q-item-section>
+            <q-item-section side>
+              <q-rating v-model="r.rating" readonly :max="5" color="amber" />
+            </q-item-section>
+          </q-item>
+        </q-list>
+      </q-card-section>
+    </q-card>
+  </q-page>
 </template>
 
 <script setup>
@@ -23,8 +27,9 @@ const reviews = [
 </script>
 
 <style scoped>
-.page {
-  padding: 1rem;
+.info-card {
+  max-width: 600px;
+  margin: 0 auto;
 }
 .rounded-borders {
   border-radius: 8px;

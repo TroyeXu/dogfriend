@@ -1,6 +1,6 @@
 <template>
-  <div class="page">
-    <h2>搜尋看護員</h2>
+  <q-page class="q-pa-md">
+    <div class="text-h6 q-mb-md">搜尋看護員</div>
     <q-input v-model="query" label="輸入姓名或技能" outlined class="q-mb-md" />
     <div class="caregiver-list">
       <CaregiverCard
@@ -9,7 +9,7 @@
         :caregiver="c"
       />
     </div>
-  </div>
+  </q-page>
 </template>
 
 <script setup>
@@ -31,9 +31,6 @@ const filteredCaregivers = computed(() => {
 </script>
 
 <style scoped>
-.page {
-  padding: 1rem;
-}
 .caregiver-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));

@@ -1,19 +1,23 @@
 <template>
-  <div class="page">
-    <h2>照護資源與常見問題</h2>
-    <h3 class="q-mt-md">文章</h3>
-    <q-list bordered class="rounded-borders q-mb-lg">
-      <q-item v-for="(a, i) in articles" :key="i">
-        <q-item-section>{{ a }}</q-item-section>
-      </q-item>
-    </q-list>
-    <h3>FAQ</h3>
-    <q-list bordered class="rounded-borders">
-      <q-expansion-item v-for="(q, i) in faqs" :key="i" :label="q.q">
-        {{ q.a }}
-      </q-expansion-item>
-    </q-list>
-  </div>
+  <q-page class="q-pa-md">
+    <q-card flat bordered class="info-card">
+      <q-card-section>
+        <div class="text-h6">照護資源與常見問題</div>
+        <div class="q-mt-md text-subtitle2">文章</div>
+        <q-list bordered class="rounded-borders q-mb-lg">
+          <q-item v-for="(a, i) in articles" :key="i">
+            <q-item-section>{{ a }}</q-item-section>
+          </q-item>
+        </q-list>
+        <div class="text-subtitle2">FAQ</div>
+        <q-list bordered class="rounded-borders">
+          <q-expansion-item v-for="(q, i) in faqs" :key="i" :label="q.q">
+            {{ q.a }}
+          </q-expansion-item>
+        </q-list>
+      </q-card-section>
+    </q-card>
+  </q-page>
 </template>
 
 <script setup>
@@ -29,8 +33,9 @@ const faqs = [
 </script>
 
 <style scoped>
-.page {
-  padding: 1rem;
+.info-card {
+  max-width: 600px;
+  margin: 0 auto;
 }
 .rounded-borders {
   border-radius: 8px;
