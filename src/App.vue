@@ -9,6 +9,16 @@
           <q-icon name="medical_services" size="md" class="q-mr-sm" />
           <h1 class="text-h5 q-my-none">專業護理服務計費系統</h1>
         </q-toolbar-title>
+        <q-space />
+        <template v-if="auth.currentUser">
+          <span class="q-mr-sm">您好，{{ auth.currentUser.name }}</span>
+          <q-btn flat dense label="登出" class="q-mr-sm" @click="auth.logout()" />
+        </template>
+        <template v-else>
+          <q-btn flat dense label="登入" class="q-mr-sm" @click="loginDialog = true" />
+          <q-btn dense color="secondary" label="註冊" class="q-mr-sm" @click="registerDialog = true" />
+        </template>
+        <q-btn flat dense label="諮詢" @click="consultDialog = true" />
       </q-toolbar>
     </q-header>
 
@@ -602,14 +612,48 @@
         </q-card-section>
       </q-card>
     </q-dialog>
-  
+
+    <!-- 登入對話框 -->
+    <q-dialog v-model="loginDialog">
+      <q-card style="min-width: 350px">
+        <q-card-section class="text-h6">登入</q-card-section>
+        <q-card-section>
+          <LoginForm @success="loginDialog = false" />
+        </q-card-section>
+      </q-card>
+    </q-dialog>
+
+    <!-- 註冊對話框 -->
+    <q-dialog v-model="registerDialog">
+      <q-card style="min-width: 350px">
+        <q-card-section class="text-h6">註冊</q-card-section>
+        <q-card-section>
+          <RegisterForm @success="registerDialog = false" />
+        </q-card-section>
+      </q-card>
+    </q-dialog>
+
+    <!-- 諮詢對話框 -->
+    <q-dialog v-model="consultDialog">
+      <q-card style="min-width: 350px">
+        <q-card-section class="text-h6">諮詢表單</q-card-section>
+        <q-card-section>
+          <ConsultationForm @success="consultDialog = false" />
+        </q-card-section>
+      </q-card>
+    </q-dialog>
 
   </q-layout>
 </template>
 
 <script setup>
+import { ref } from 'vue'
 import { Pie } from 'vue-chartjs'
 import useCareService from './composables/useCareService'
+import LoginForm from './components/LoginForm.vue'
+import RegisterForm from './components/RegisterForm.vue'
+import ConsultationForm from './components/ConsultationForm.vue'
+import { useAuthStore } from './store/auth'
 
 const {
   particlesLoaded,
@@ -662,6 +706,11 @@ const {
   getItemIcon,
   getItemColor
 } = useCareService()
+
+const loginDialog = ref(false)
+const registerDialog = ref(false)
+const consultDialog = ref(false)
+const auth = useAuthStore()
 </script>
 
 <style scoped>
