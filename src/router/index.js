@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import Calculator from '../views/Calculator.vue'
+import Home from '../views/Home.vue'
 import CaregiverList from '../views/CaregiverList.vue'
 import CaregiverDetail from '../views/CaregiverDetail.vue'
 import Services from '../views/Services.vue'
@@ -22,6 +23,7 @@ import Subsidy from '../views/Subsidy.vue'
 import Blog from '../views/Blog.vue'
 import About from '../views/About.vue'
 import AppDownload from '../views/AppDownload.vue'
+import Resources from '../views/Resources.vue'
 
 const routes = [
   { path: '/', name: 'home', component: Home },
@@ -41,6 +43,7 @@ const routes = [
   { path: '/schedule', name: 'schedule', component: Schedule },
   { path: '/payments', name: 'payments', component: Payments },
   { path: '/reviews', name: 'reviews', component: Reviews },
+  { path: '/resources', name: 'resources', component: Resources },
   { path: '/match', name: 'match', component: Match },
   { path: '/search', name: 'search', component: Search },
   { path: '/subsidy', name: 'subsidy', component: Subsidy },
