@@ -1,13 +1,13 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Home from '../components/HelloWorld.vue'
+import Home from '../pages/Home.vue'
+import Calculator from '../pages/Calculator.vue'
 
 const routes = [
-  { path: '/', name: 'home', component: Home }
+  { path: '/', name: 'home', component: Home },
+  { path: '/calculator', name: 'calculator', component: Calculator }
 ]
 
-const router = createRouter({
+export default createRouter({
   history: createWebHistory(),
   routes
 })
-
-export default router
