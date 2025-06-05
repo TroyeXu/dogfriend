@@ -8,10 +8,7 @@ const routes = [
   { path: '/caregivers', name: 'caregivers', component: CaregiverList },
   { path: '/caregivers/:id', name: 'caregiver-detail', component: CaregiverDetail }
 ]
-
 const router = createRouter({
   history: createWebHistory('/dogfriend/'),  // 添加基礎路徑
   routes
 })
-
-export default router
