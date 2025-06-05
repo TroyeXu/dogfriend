@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import Home from '../views/Home.vue'
 import Calculator from '../views/Calculator.vue'
 import CaregiverList from '../views/CaregiverList.vue'
 import CaregiverDetail from '../views/CaregiverDetail.vue'
@@ -17,9 +18,14 @@ import Payments from '../views/Payments.vue'
 import Reviews from '../views/Reviews.vue'
 import Match from '../views/Match.vue'
 import Search from '../views/Search.vue'
+import Subsidy from '../views/Subsidy.vue'
+import Blog from '../views/Blog.vue'
+import About from '../views/About.vue'
+import AppDownload from '../views/AppDownload.vue'
 
 const routes = [
-  { path: '/', name: 'calculator', component: Calculator },
+  { path: '/', name: 'home', component: Home },
+  { path: '/calculator', name: 'calculator', component: Calculator },
   { path: '/caregivers', name: 'caregivers', component: CaregiverList },
   { path: '/caregivers/:id', name: 'caregiver-detail', component: CaregiverDetail },
   { path: '/services', name: 'services', component: Services },
@@ -36,7 +42,11 @@ const routes = [
   { path: '/payments', name: 'payments', component: Payments },
   { path: '/reviews', name: 'reviews', component: Reviews },
   { path: '/match', name: 'match', component: Match },
-  { path: '/search', name: 'search', component: Search }
+  { path: '/search', name: 'search', component: Search },
+  { path: '/subsidy', name: 'subsidy', component: Subsidy },
+  { path: '/blog', name: 'blog', component: Blog },
+  { path: '/about', name: 'about', component: About },
+  { path: '/app', name: 'app-download', component: AppDownload }
 ]
 const router = createRouter({
   history: createWebHistory('/dogfriend/'),  // 添加基礎路徑
