@@ -609,7 +609,7 @@
 
 <script setup>
 import { Pie } from 'vue-chartjs'
-import useCareService from '../composables/useCareService'
+import useCareService from './composables/useCareService'
 
 const {
   particlesLoaded,
