@@ -1,0 +1,22 @@
+<template>
+  <div class="caregiver-list">
+    <CaregiverCard v-for="c in caregivers" :key="c.id" :caregiver="c" />
+  </div>
+</template>
+
+<script setup>
+import { storeToRefs } from 'pinia'
+import CaregiverCard from '../components/CaregiverCard.vue'
+import { useCaregiverStore } from '../store/caregivers'
+
+const store = useCaregiverStore()
+const { caregivers } = storeToRefs(store)
+</script>
+
+<style scoped>
+.caregiver-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
+</style>
