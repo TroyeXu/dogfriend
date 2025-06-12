@@ -32,12 +32,3 @@ const faqs = [
 ]
 </script>
 
-<style scoped>
-.info-card {
-  max-width: 600px;
-  margin: 0 auto;
-}
-.rounded-borders {
-  border-radius: 8px;
-}
-</style>

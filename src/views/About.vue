@@ -15,9 +15,3 @@
 <script setup>
 </script>
 
-<style scoped>
-.info-card {
-  max-width: 600px;
-  width: 100%;
-}
-</style>

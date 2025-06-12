@@ -12,9 +12,3 @@
 <script setup>
 </script>
 
-<style scoped>
-.info-card {
-  max-width: 500px;
-  width: 100%;
-}
-</style>
