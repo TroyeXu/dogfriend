@@ -17,5 +17,18 @@ export default defineConfig({
     alias: {
       src: '/src' // 添加路徑別名
     }
+  },
+  build: {
+    minify: 'terser',
+    sourcemap: false,
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            return id.toString().split('node_modules/')[1].split('/')[0]
+          }
+        }
+      }
+    }
   }
 })
