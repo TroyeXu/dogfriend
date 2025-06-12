@@ -32,9 +32,3 @@ const store = useCaregiverStore()
 const caregiver = store.getById(route.params.id)
 </script>
 
-<style scoped>
-.info-card {
-  max-width: 600px;
-  width: 100%;
-}
-</style>
