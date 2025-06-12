@@ -1,0 +1,14 @@
+<template>
+  <q-page class="q-pa-md flex flex-center">
+    <q-card flat bordered class="info-card">
+      <q-card-section>
+        <div class="text-h6">用戶儀表板</div>
+        <p>在此查看個人資料與紀錄。</p>
+      </q-card-section>
+    </q-card>
+  </q-page>
+</template>
+
+<script setup>
+</script>
+
