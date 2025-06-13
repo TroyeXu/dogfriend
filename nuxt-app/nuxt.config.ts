@@ -4,11 +4,13 @@ import { defineNuxtConfig } from 'nuxt/config'
 export default defineNuxtConfig({
   modules: [
     '@pinia/nuxt',
-    '@vite-pwa/nuxt'
+    '@vite-pwa/nuxt',
+    '@nuxtjs/tailwindcss'
   ],
   css: [
     'quasar/src/css/index.sass',
-    '~/assets/global.scss'
+    '~/assets/global.scss',
+    '~/assets/tailwind.css'
   ],
   vite: {
     plugins: [
