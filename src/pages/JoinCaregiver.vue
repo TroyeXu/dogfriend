@@ -3,10 +3,41 @@
     <q-card flat bordered class="info-card">
       <q-card-section>
         <div class="text-h6 q-mb-sm">成為看護員</div>
-        <p>這裡簡述看護員如何加入平台。</p>
+        <p>加入 DogFriend 團隊，發揮您的照護專長。</p>
+
+        <q-list bordered class="rounded-borders q-mt-md">
+          <q-item>
+            <q-item-section avatar>
+              <q-icon name="person_add" color="primary" />
+            </q-item-section>
+            <q-item-section>
+              <q-item-label>註冊帳號</q-item-label>
+              <q-item-label caption>建立個人檔案並填寫基本資料</q-item-label>
+            </q-item-section>
+          </q-item>
+          <q-item>
+            <q-item-section avatar>
+              <q-icon name="assignment_turned_in" color="primary" />
+            </q-item-section>
+            <q-item-section>
+              <q-item-label>資格審核</q-item-label>
+              <q-item-label caption>提交證照與經驗以供審查</q-item-label>
+            </q-item-section>
+          </q-item>
+          <q-item>
+            <q-item-section avatar>
+              <q-icon name="school" color="primary" />
+            </q-item-section>
+            <q-item-section>
+              <q-item-label>完成培訓</q-item-label>
+              <q-item-label caption>線上課程快速上手服務流程</q-item-label>
+            </q-item-section>
+          </q-item>
+        </q-list>
       </q-card-section>
+      <q-separator />
       <q-card-actions align="right">
-        <q-btn flat color="primary" to="/register" label="立即加入" />
+        <q-btn color="primary" to="/register" label="立即加入" />
       </q-card-actions>
     </q-card>
   </q-page>
@@ -14,4 +45,10 @@
 
 <script setup>
 </script>
+
+<style scoped>
+.rounded-borders {
+  border-radius: 8px;
+}
+</style>
 
