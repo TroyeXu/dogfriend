@@ -1,7 +1,7 @@
 <template>
   <q-page class="q-pa-md">
     <div class="q-mb-lg">
-      <h2 class="text-h5 q-mb-md">我們的服務</h2>
+      <h2 class="text-h5 q-mb-md">{{ $t('index.ourServices') }}</h2>
       <q-list bordered class="rounded-borders bg-white">
         <q-item>
           <q-item-section avatar>
@@ -34,7 +34,7 @@
     </div>
 
     <div>
-      <h2 class="text-h5 q-mb-md">為何選擇我們</h2>
+      <h2 class="text-h5 q-mb-md">{{ $t('index.whyUs') }}</h2>
       <q-card class="q-mb-sm" bordered>
         <q-card-section class="text-center">
           <div class="text-h6">快速媒合</div>
