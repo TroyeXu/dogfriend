@@ -2,8 +2,6 @@ import { quasar } from '@quasar/vite-plugin'
 import { defineNuxtConfig } from 'nuxt/config'
 
 // 導入語言文件
-import en from './locales/en.json'
-import zh from './locales/zh.json'
 
 export default defineNuxtConfig({
   // 添加相容性日期
@@ -40,17 +38,17 @@ export default defineNuxtConfig({
       { code: 'en', iso: 'en-US', file: 'en.json', name: 'English' },
       { code: 'zh', iso: 'zh-TW', file: 'zh.json', name: '中文' }
     ],
+    lazy: true,
+    langDir: 'locales',
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'i18n_redirected',
+      redirectOn: 'root'
+    },
     vueI18n: {
       legacy: false,
       locale: 'zh',
-      fallbackLocale: 'zh',
-      localeDir: 'locales',
-      lazy: true,
-      detectBrowserLanguage: {
-        useCookie: true,
-        cookieKey: 'i18n_redirected',
-        redirectOn: 'root'
-      }
+      fallbackLocale: 'zh'
     }
   }
 })
