@@ -26,7 +26,8 @@
     "pinia": "^2.1.7",
     "nuxt": "^3.10.0",
     "@pinia/nuxt": "^0.5.8",
-    "@vite-pwa/nuxt": "^0.8.0"
+    "@vite-pwa/nuxt": "^0.8.0",
+    "@nuxtjs/i18n": "^8.0.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.2.3",
