@@ -25,7 +25,11 @@
           class="q-mb-md"
         />
         <q-list bordered class="rounded-borders">
-          <q-expansion-item v-for="(q, i) in filteredFaqs" :key="i" :label="q.q">
+          <q-expansion-item
+            v-for="(q, i) in filteredFaqs"
+            :key="i"
+            :label="q.q"
+          >
             {{ q.a }}
           </q-expansion-item>
         </q-list>
@@ -40,13 +44,13 @@ import { ref, computed } from 'vue'
 const articles = [
   '如何選擇適合的看護員',
   '居家照護的注意事項',
-  '照護資源補助申請流程'
+  '照護資源補助申請流程',
 ]
 
 const faqs = [
   { q: '如何預約看護？', a: '可透過搜尋後直接聯繫我們協助排程。' },
   { q: '是否提供試用？', a: '初次服務可享一次免費試用時段。' },
-  { q: '收費模式為何？', a: '依照服務項目與時數計費。' }
+  { q: '收費模式為何？', a: '依照服務項目與時數計費。' },
 ]
 
 const articleQuery = ref('')
@@ -54,12 +58,13 @@ const faqQuery = ref('')
 
 const filteredArticles = computed(() => {
   if (!articleQuery.value) return articles
-  return articles.filter(a => a.includes(articleQuery.value))
+  return articles.filter((a) => a.includes(articleQuery.value))
 })
 
 const filteredFaqs = computed(() => {
   if (!faqQuery.value) return faqs
-  return faqs.filter(f => f.q.includes(faqQuery.value) || f.a.includes(faqQuery.value))
+  return faqs.filter(
+    (f) => f.q.includes(faqQuery.value) || f.a.includes(faqQuery.value),
+  )
 })
 </script>
-

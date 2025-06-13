@@ -22,15 +22,20 @@ export default function useCareActions(state, calculations, particleApi) {
   function toggleItem(item) {
     const targetArray = selectedCategory.value === '鐘點制' ? selectedHourlyItems : selectedShiftItems
     const index = targetArray.value.findIndex(i => i.code === item.code)
-    const clickEvent = window.event
-    if (clickEvent) {
-      createParticleExplosion(clickEvent.clientX, clickEvent.clientY, item.color || 'primary')
+    
+    if (process.client) {
+      const clickEvent = window.event
+      if (clickEvent) {
+        createParticleExplosion(clickEvent.clientX, clickEvent.clientY, item.color || 'primary')
+      }
     }
     if (index === -1) {
       targetArray.value.push(item)
-      const el = document.querySelector(`[data-code="${item.code}"]`)
-      if (el) {
-        gsap.fromTo(el, { scale: 1, backgroundColor: 'rgba(76, 175, 80, 0.2)' }, { scale: 1, backgroundColor: 'rgba(25, 118, 210, 0.08)', duration: 0.5, ease: 'power1.out' })
+      if (process.client) {
+        const el = document.querySelector(`[data-code="${item.code}"]`)
+        if (el) {
+          gsap.fromTo(el, { scale: 1, backgroundColor: 'rgba(76, 175, 80, 0.2)' }, { scale: 1, backgroundColor: 'rgba(25, 118, 210, 0.08)', duration: 0.5, ease: 'power1.out' })
+        }
       }
     } else if (item.code !== 'HR01') {
       targetArray.value.splice(index, 1)

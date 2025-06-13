@@ -1,5 +1,5 @@
-import { quasar } from '@quasar/vite-plugin'
 import { defineNuxtConfig } from 'nuxt/config'
+import { quasar } from '@quasar/vite-plugin'
 
 // 導入語言文件
 
@@ -18,9 +18,16 @@ export default defineNuxtConfig({
   vite: {
     plugins: [
       quasar({
-        sassVariables: 'quasar-variables.scss'
+        sassVariables: 'assets/quasar-variables.scss'
       })
-    ]
+    ],
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: `@import '~/assets/quasar-variables.scss';`
+        }
+      }
+    }
   },
   pwa: {
     registerType: 'autoUpdate',
@@ -35,8 +42,8 @@ export default defineNuxtConfig({
     strategy: 'no_prefix',
     defaultLocale: 'zh',
     locales: [
-      { code: 'en', iso: 'en-US', file: 'en.json', name: 'English' },
-      { code: 'zh', iso: 'zh-TW', file: 'zh.json', name: '中文' }
+      { code: 'en', language: 'en', file: 'en.json', name: 'English' },
+      { code: 'zh', language: 'zh-TW', file: 'zh.json', name: '中文' }
     ],
     lazy: true,
     langDir: 'locales',
@@ -45,10 +52,6 @@ export default defineNuxtConfig({
       cookieKey: 'i18n_redirected',
       redirectOn: 'root'
     },
-    vueI18n: {
-      legacy: false,
-      locale: 'zh',
-      fallbackLocale: 'zh'
-    }
+
   }
 })
