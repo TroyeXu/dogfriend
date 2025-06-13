@@ -33,6 +33,8 @@
 
     <q-page-container>
       <router-view />
+          <NuxtPage />
+
     </q-page-container>
   </q-layout>
 </template>
