@@ -4,12 +4,22 @@
       <q-card-section>
         <div class="text-h6">補助與保險資訊</div>
         <q-list bordered class="rounded-borders q-mt-md">
-          <q-item v-for="(item, i) in subsidies" :key="i" clickable>
-            <q-item-section>{{ item.name }}</q-item-section>
-            <q-item-section side>
-              <q-icon name="open_in_new" color="primary" />
-            </q-item-section>
-          </q-item>
+          <q-expansion-item
+            v-for="(item, i) in subsidies"
+            :key="i"
+            :label="item.name"
+          >
+            <div class="q-mb-sm">{{ item.desc }}</div>
+            <q-btn
+              flat
+              size="sm"
+              color="primary"
+              :href="item.url"
+              target="_blank"
+              icon="open_in_new"
+              label="前往連結"
+            />
+          </q-expansion-item>
         </q-list>
       </q-card-section>
     </q-card>
@@ -18,8 +28,16 @@
 
 <script setup>
 const subsidies = [
-  { name: '長照補助' },
-  { name: '看護保險方案' }
+  {
+    name: '長照補助',
+    desc: '政府提供的長期照顧補助方案，依照失能等級給予費用補助。',
+    url: 'https://example.com/long-term-care'
+  },
+  {
+    name: '看護保險方案',
+    desc: '民間保險公司推出的照護險，減輕長期看護費用負擔。',
+    url: 'https://example.com/caregiver-insurance'
+  }
 ]
 </script>
 
