@@ -6,8 +6,9 @@ Learn more about IDE Support for Vue in the [Vue Docs Scaling up Guide](https://
 
 ## Code Style
 
-This project uses ESLint and Prettier to keep the code style consistent.
+This project uses ESLint, Prettier and Stylelint to keep the code style consistent.
 
-- `npm run lint` runs ESLint.
+- `npm run lint` runs ESLint for JavaScript and Vue files.
+- `npm run lint:style` runs Stylelint for CSS/SCSS files.
 - `npm run format` formats files with Prettier.
 
