@@ -8,3 +8,13 @@ body {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
 }
+
+.pricing-card {
+  transition: all 0.3s ease;
+  border-radius: 12px;
+}
+
+.pricing-card:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+}
