@@ -61,6 +61,12 @@
       "@vue/compiler-sfc": [
         "../node_modules/@vue/compiler-sfc"
       ],
+      "vue-router": [
+        "../node_modules/vue-router"
+      ],
+      "vue-router/auto-routes": [
+        "../node_modules/vue-router/vue-router-auto-routes"
+      ],
       "unplugin-vue-router/client": [
         "../node_modules/unplugin-vue-router/client"
       ],
@@ -93,6 +99,9 @@
       ],
       "#internal/nuxt/paths": [
         "../node_modules/nuxt/dist/core/runtime/nitro/utils/paths"
+      ],
+      "pinia": [
+        "../node_modules/pinia/dist/pinia"
       ],
       "#pwa": [
         "../node_modules/@vite-pwa/nuxt/dist/runtime/composables/index"
@@ -139,6 +148,7 @@
     "../node_modules/@pinia/nuxt/runtime/server",
     "../node_modules/@vite-pwa/nuxt/runtime/server",
     "../node_modules/@nuxtjs/i18n/runtime/server",
+    "../node_modules/nuxt-quasar-ui/runtime/server",
     "../node_modules/@nuxt/devtools/runtime/server",
     "../node_modules/@nuxt/telemetry/runtime/server",
     "./types/nitro.d.ts",
@@ -151,6 +161,7 @@
     "../node_modules/@pinia/nuxt/node_modules",
     "../node_modules/@vite-pwa/nuxt/node_modules",
     "../node_modules/@nuxtjs/i18n/node_modules",
+    "../node_modules/nuxt-quasar-ui/node_modules",
     "../node_modules/@nuxt/devtools/node_modules",
     "../node_modules/@nuxt/telemetry/node_modules",
     "../dist"

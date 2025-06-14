@@ -1490,7 +1490,7 @@
     which "^5.0.0"
     ws "^8.18.2"
 
-"@nuxt/kit@3.17.5", "@nuxt/kit@^3.13.1", "@nuxt/kit@^3.15.4", "@nuxt/kit@^3.17.4", "@nuxt/kit@^3.9.0":
+"@nuxt/kit@3.17.5", "@nuxt/kit@^3.12.0", "@nuxt/kit@^3.13.1", "@nuxt/kit@^3.15.4", "@nuxt/kit@^3.17.4", "@nuxt/kit@^3.9.0":
   version "3.17.5"
   resolved "https://registry.yarnpkg.com/@nuxt/kit/-/kit-3.17.5.tgz#88583f68db604a55c54cfd30924d1a98c339aa5b"
   integrity sha512-NdCepmA+S/SzgcaL3oYUeSlXGYO6BXGr9K/m1D0t0O9rApF8CSq/QQ+ja5KYaYMO1kZAEWH4s2XVcE3uPrrAVg==
@@ -1789,12 +1789,13 @@
     "@parcel/watcher-win32-ia32" "2.5.1"
     "@parcel/watcher-win32-x64" "2.5.1"
 
-"@pinia/nuxt@^0.5.8":
-  version "0.11.1"
-  resolved "https://registry.yarnpkg.com/@pinia/nuxt/-/nuxt-0.11.1.tgz#2c45c76bf862b59c50718a816bc5a0e58ea4c17c"
-  integrity sha512-tCD8ioWhhIHKwm8Y9VvyhBAV/kK4W5uGBIYbI5iM4N1t7duOqK6ECBUavrMxMolELayqqMLb9+evegrh3S7s2A==
+"@pinia/nuxt@^0.5.1":
+  version "0.5.5"
+  resolved "https://registry.yarnpkg.com/@pinia/nuxt/-/nuxt-0.5.5.tgz#0e156bbb86b3ccb087006ff505bc0c1b6522e8c3"
+  integrity sha512-wjxS7YqIesh4OLK+qE3ZjhdOJ5pYZQ+VlEmZNtTwzQn1Kavei/khovx7mzXVXNA/mvSPXVhb9xBzhyS3XMURtw==
   dependencies:
     "@nuxt/kit" "^3.9.0"
+    pinia "^2.2.3"
 
 "@pkgjs/parseargs@^0.11.0":
   version "0.11.0"
@@ -1831,11 +1832,6 @@
   version "1.17.0"
   resolved "https://registry.yarnpkg.com/@quasar/extras/-/extras-1.17.0.tgz#966c0464a069d15f929d14f51b61fc8efefcf76c"
   integrity sha512-KqAHdSJfIDauiR1nJ8rqHWT0diqD0QradZKoVIZJAilHAvgwyPIY7MbyR2z4RIMkUIMUSqBZcbshMpEw+9A30w==
-
-"@quasar/vite-plugin@^1.9.0":
-  version "1.9.0"
-  resolved "https://registry.yarnpkg.com/@quasar/vite-plugin/-/vite-plugin-1.9.0.tgz#c95748490ebe3b769cbd851ea60f3461743c5083"
-  integrity sha512-r1MFtI2QZJ2g20pe75Zuv4aoi0uoK8oP0yEdzLWRoOLCbhtf2+StJpUza9TydYi3KcvCl9+4HUf3OAWVKoxDmQ==
 
 "@rolldown/pluginutils@^1.0.0-beta.9":
   version "1.0.0-beta.15"
@@ -5963,7 +5959,19 @@ nth-check@^2.0.1, nth-check@^2.1.1:
   dependencies:
     boolbase "^1.0.0"
 
-nuxt@^3.10.0:
+nuxt-quasar-ui@^2.1.12:
+  version "2.1.12"
+  resolved "https://registry.yarnpkg.com/nuxt-quasar-ui/-/nuxt-quasar-ui-2.1.12.tgz#d4bd5b38e1aa901528c545e6cf66a76953a37764"
+  integrity sha512-A8T0OqNNI5oALoOO7yWSHUNYWNkGD6rECwyYMKhuraoWdZUmhHLewKi8taR50PnfLwS8NP6JSxFcWvLJNhyIYQ==
+  dependencies:
+    "@nuxt/kit" "^3.15.4"
+    defu "^6.1.4"
+    magic-string "^0.30.17"
+    mlly "^1.7.4"
+    p-memoize "^7.1.1"
+    semver "^7.6.3"
+
+nuxt@^3.12.0:
   version "3.17.5"
   resolved "https://registry.yarnpkg.com/nuxt/-/nuxt-3.17.5.tgz#9d16ebed84e467f54cb78896ba97dbcf3afe657d"
   integrity sha512-HWTWpM1/RDcCt9DlnzrPcNvUmGqc62IhlZJvr7COSfnJq2lKYiBKIIesEaOF+57Qjw7TfLPc1DQVBNtxfKBxEw==
@@ -6231,6 +6239,14 @@ p-map@^7.0.0:
   resolved "https://registry.yarnpkg.com/p-map/-/p-map-7.0.3.tgz#7ac210a2d36f81ec28b736134810f7ba4418cdb6"
   integrity sha512-VkndIv2fIB99swvQoA65bm+fsmt6UNdGeIB0oxBs+WhAhdh08QA04JXpI7rbB9r08/nkbysKoya9rtDERYOYMA==
 
+p-memoize@^7.1.1:
+  version "7.1.1"
+  resolved "https://registry.yarnpkg.com/p-memoize/-/p-memoize-7.1.1.tgz#53b1d0e6007288f7261cfa11a7603b84c9261bfa"
+  integrity sha512-DZ/bONJILHkQ721hSr/E9wMz5Am/OTJ9P6LhLFo2Tu+jL8044tgc9LwHO8g4PiaYePnlVVRAJcKmgy8J9MVFrA==
+  dependencies:
+    mimic-fn "^4.0.0"
+    type-fest "^3.0.0"
+
 p-timeout@^6.0.0, p-timeout@^6.1.2:
   version "6.1.4"
   resolved "https://registry.yarnpkg.com/p-timeout/-/p-timeout-6.1.4.tgz#418e1f4dd833fa96a2e3f532547dd2abdb08dbc2"
@@ -6392,7 +6408,7 @@ picomatch@^4.0.2:
   resolved "https://registry.yarnpkg.com/picomatch/-/picomatch-4.0.2.tgz#77c742931e8f3b8820946c76cd0c1f13730d1dab"
   integrity sha512-M7BAV6Rlcy5u+m6oPhAPFgJTzAioX/6B0DxyvDlo9l8+T3nLKbrczg2WLUyzd45L8RqfUMyGPzekbMvX2Ldkwg==
 
-pinia@^2.1.7:
+pinia@^2.1.6, pinia@^2.2.3:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/pinia/-/pinia-2.3.1.tgz#54c476675b72f5abcfafa24a7582531ea8c23d94"
   integrity sha512-khUlZSwt9xXCaTbbxFYBKDc/bWAGWJjOgvxETwkTN7KRm66EeT1ZdZj6i2ceh9sP2Pzqsbc704r2yngBrxBVug==
@@ -8338,6 +8354,11 @@ type-fest@^0.20.2:
   resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-0.20.2.tgz#1bf207f4b28f91583666cb5fbd327887301cd5f4"
   integrity sha512-Ne+eE4r0/iWnpAxD852z3A+N0Bt5RN//NjJwRd2VFHEmrywxf5vsZlh4R6lixl6B+wz/8d+maTSAkN1FIkI3LQ==
 
+type-fest@^3.0.0:
+  version "3.13.1"
+  resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-3.13.1.tgz#bb744c1f0678bea7543a2d1ec24e83e68e8c8706"
+  integrity sha512-tLq3bSNx+xSpwvAJnzrK0Ep5CLNWjvFTOp71URMaAEWBfRb9nnJiBoUe0tF8bI4ZFO3omgBR6NvnbzVUT3Ly4g==
+
 type-fest@^4.18.2, type-fest@^4.39.1, type-fest@^4.6.0:
   version "4.41.0"
   resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-4.41.0.tgz#6ae1c8e5731273c2bf1f58ad39cbae2c91a46c58"
@@ -8807,7 +8828,7 @@ vue-i18n@^9.14.1:
     "@intlify/shared" "9.14.4"
     "@vue/devtools-api" "^6.5.0"
 
-vue-router@^4.3.0, vue-router@^4.4.4, vue-router@^4.5.1:
+vue-router@^4.4.4, vue-router@^4.5.1:
   version "4.5.1"
   resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-4.5.1.tgz#47bffe2d3a5479d2886a9a244547a853aa0abf69"
   integrity sha512-ogAF3P97NPm8fJsE4by9dwSYtDwXIY1nFY9T6DyQnGHd1E2Da94w9JIolpe42LJGIl0DwOHBi8TcRPlPGwbTtw==

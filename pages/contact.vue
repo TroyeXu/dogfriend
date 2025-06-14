@@ -16,19 +16,13 @@
           <q-item-section avatar>
             <q-icon name="email" color="primary" />
           </q-item-section>
-        <q-item-section>Email：service@example.com</q-item-section>
-      </q-item>
+          <q-item-section>Email：service@example.com</q-item-section>
+        </q-item>
       </q-list>
       <q-separator class="q-my-md" />
       <q-card-section>
         <q-form @submit.prevent="submit">
-          <q-input
-            v-model="name"
-            label="姓名"
-            outlined
-            dense
-            class="q-mb-sm"
-          />
+          <q-input v-model="name" label="姓名" outlined dense class="q-mb-sm" />
           <q-input
             v-model="email"
             type="email"
@@ -55,18 +49,8 @@
 
 <script setup>
 import { ref } from 'vue'
-import { useQuasar } from 'quasar'
 
-const $q = useQuasar()
 const name = ref('')
 const email = ref('')
 const message = ref('')
-
-function submit() {
-  $q.notify({ color: 'positive', message: '訊息已送出！' })
-  name.value = ''
-  email.value = ''
-  message.value = ''
-}
 </script>
-

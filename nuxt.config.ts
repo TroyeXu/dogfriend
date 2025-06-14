@@ -1,5 +1,4 @@
 import { defineNuxtConfig } from 'nuxt/config'
-import { quasar } from '@quasar/vite-plugin'
 
 // 導入語言文件
 
@@ -9,22 +8,23 @@ export default defineNuxtConfig({
   modules: [
     '@pinia/nuxt',
     '@vite-pwa/nuxt',
-    '@nuxtjs/i18n'
+    '@nuxtjs/i18n',
+    'nuxt-quasar-ui'
   ],
   css: [
-    'quasar/src/css/index.sass',
+    'quasar/fonts',
+    'quasar/animations',
+    'quasar/icons',
+    'quasar/css',
     '~/assets/global.scss'
   ],
   vite: {
     plugins: [
-      quasar({
-        sassVariables: 'assets/quasar-variables.scss'
-      })
+   
     ],
     css: {
       preprocessorOptions: {
         scss: {
-          additionalData: `@import '~/assets/quasar-variables.scss';`
         }
       }
     }
@@ -52,6 +52,57 @@ export default defineNuxtConfig({
       cookieKey: 'i18n_redirected',
       redirectOn: 'root'
     },
+  },
 
+  quasar: {
+    // 啟用 Quasar 插件
+    plugins: ['Notify', 'Dialog', 'Loading'],
+    // 配置預設語言
+    lang: 'zh-TW',
+    // 配置圖標集
+    iconSet: 'material-icons',
+    // 配置預設組件屬性
+    components: {
+      defaults: {
+        // 這裡可以設置 Quasar 組件的默認屬性
+        QBtn: {
+          dense: true,
+          unelevated: true
+        },
+        QInput: {
+          outlined: true,
+          dense: true
+        }
+      }
+    },
+    // 品牌顏色配置
+    config: {
+      brand: {
+        primary: '#1976D2',
+        secondary: '#26A69A',
+        accent: '#9C27B0',
+        positive: '#21BA45',
+        negative: '#C10015',
+        info: '#31CCEC',
+        warning: '#F2C037'
+      },
+      // 通知配置
+      notify: {
+        position: 'top-right',
+        timeout: 3000
+      },
+      // 加載配置
+      loading: {
+        delay: 400
+      }
+    },
+    // 導入額外的字體和圖標
+    extras: {
+      font: 'roboto-font',
+      fontIcons: ['material-icons'],
+      animations: 'all'
+    },
+    // 啟用 CSS 變量
+    sassVariables: true
   }
 })

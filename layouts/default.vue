@@ -29,7 +29,14 @@
 
     <q-drawer v-model="drawer" side="left" overlay class="q-pa-md">
       <q-list>
-        <q-item v-for="item in menuItems" :key="item.to" clickable v-ripple :to="item.to" @click="drawer = false">
+        <q-item
+          v-for="item in menuItems"
+          :key="item.to"
+          clickable
+          v-ripple
+          :to="item.to"
+          @click="drawer = false"
+        >
           <q-item-section>{{ $t(`nav.${item.key}`) }}</q-item-section>
         </q-item>
       </q-list>
@@ -55,6 +62,6 @@ const menuItems = [
   { key: 'about', to: '/about' },
   { key: 'subsidy', to: '/subsidy' },
   { key: 'blog', to: '/blog' },
-  { key: 'contact', to: '/contact' }
+  { key: 'contact', to: '/contact' },
 ]
 </script>
