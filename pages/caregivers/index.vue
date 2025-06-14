@@ -9,7 +9,7 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import CaregiverCard from '../components/CaregiverCard.vue'
-import { useCaregiverStore } from '../store/caregivers'
+import { useCaregiverStore } from '../stores/caregivers'
 
 const store = useCaregiverStore()
 const { caregivers } = storeToRefs(store)
