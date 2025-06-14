@@ -15,7 +15,7 @@
 <script setup>
 import { ref, computed } from 'vue'
 import { storeToRefs } from 'pinia'
-import { useCaregiverStore } from '../store/caregivers'
+import { useCaregiverStore } from '../stores/caregivers'
 import CaregiverCard from '../components/CaregiverCard.vue'
 
 const store = useCaregiverStore()

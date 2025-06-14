@@ -25,7 +25,7 @@
 
 <script setup>
 import { useRoute } from 'vue-router'
-import { useCaregiverStore } from '../store/caregivers'
+import { useCaregiverStore } from '../stores/caregivers'
 
 const route = useRoute()
 const store = useCaregiverStore()
