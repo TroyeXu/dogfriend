@@ -113,7 +113,7 @@ declare global {
   const useBrowserLocale: typeof import('../../node_modules/@nuxtjs/i18n/dist/runtime/composables/index')['useBrowserLocale']
   const useCareActions: typeof import('../../composables/useCareActions')['default']
   const useCareFilters: typeof import('../../composables/useCareFilters')['default']
-  const useCareService: typeof import('../../composables/useCareService')['default']
+  const useCareService: typeof import('../../composables/useCareService')['useCareService']
   const useCareState: typeof import('../../composables/useCareState')['default']
   const useCaregiverStore: typeof import('../../stores/caregivers')['useCaregiverStore']
   const useChart: typeof import('../../composables/useChart')['default']
@@ -145,7 +145,6 @@ declare global {
   const useModel: typeof import('vue')['useModel']
   const useNuxtApp: typeof import('../../node_modules/nuxt/dist/app/nuxt')['useNuxtApp']
   const useNuxtData: typeof import('../../node_modules/nuxt/dist/app/composables/asyncData')['useNuxtData']
-  const useNuxtDevTools: typeof import('../../node_modules/@nuxt/devtools/dist/runtime/use-nuxt-devtools')['useNuxtDevTools']
   const useParticleEffects: typeof import('../../composables/useParticleEffects')['default']
   const usePaymentsStore: typeof import('../../stores/payments')['usePaymentsStore']
   const usePinia: typeof import('../../node_modules/@pinia/nuxt/dist/runtime/composables')['usePinia']
@@ -340,7 +339,7 @@ declare module 'vue' {
     readonly useBrowserLocale: UnwrapRef<typeof import('../../node_modules/@nuxtjs/i18n/dist/runtime/composables/index')['useBrowserLocale']>
     readonly useCareActions: UnwrapRef<typeof import('../../composables/useCareActions')['default']>
     readonly useCareFilters: UnwrapRef<typeof import('../../composables/useCareFilters')['default']>
-    readonly useCareService: UnwrapRef<typeof import('../../composables/useCareService')['default']>
+    readonly useCareService: UnwrapRef<typeof import('../../composables/useCareService')['useCareService']>
     readonly useCareState: UnwrapRef<typeof import('../../composables/useCareState')['default']>
     readonly useCaregiverStore: UnwrapRef<typeof import('../../stores/caregivers')['useCaregiverStore']>
     readonly useChart: UnwrapRef<typeof import('../../composables/useChart')['default']>
@@ -372,7 +371,6 @@ declare module 'vue' {
     readonly useModel: UnwrapRef<typeof import('vue')['useModel']>
     readonly useNuxtApp: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app/nuxt')['useNuxtApp']>
     readonly useNuxtData: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app/composables/asyncData')['useNuxtData']>
-    readonly useNuxtDevTools: UnwrapRef<typeof import('../../node_modules/@nuxt/devtools/dist/runtime/use-nuxt-devtools')['useNuxtDevTools']>
     readonly useParticleEffects: UnwrapRef<typeof import('../../composables/useParticleEffects')['default']>
     readonly usePaymentsStore: UnwrapRef<typeof import('../../stores/payments')['usePaymentsStore']>
     readonly usePinia: UnwrapRef<typeof import('../../node_modules/@pinia/nuxt/dist/runtime/composables')['usePinia']>

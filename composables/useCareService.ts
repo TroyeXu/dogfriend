@@ -5,7 +5,7 @@ import useParticleEffects from './useParticleEffects'
 import useCareActions from './useCareActions'
 import useChart from './useChart'
 
-export default function useCareService() {
+export function useCareService() {
   const state = useCareState()
   const filters = useCareFilters(state)
   const calculations = useCostCalculations(state)
