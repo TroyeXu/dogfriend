@@ -10,7 +10,13 @@ export default defineNuxtConfig({
       baseUrl: process.env.NUXT_PUBLIC_BASE_URL || 'http://localhost:3000',
     },
   },
-  modules: ['@pinia/nuxt', '@vite-pwa/nuxt', '@nuxtjs/i18n', 'nuxt-quasar-ui'],
+  modules: [
+    '@pinia/nuxt',
+    '@vite-pwa/nuxt',
+    '@nuxtjs/i18n',
+    'nuxt-quasar-ui',
+    '@nuxtjs/sitemap',
+  ],
   css: [
     'quasar/fonts',
     'quasar/animations',
@@ -101,5 +107,9 @@ export default defineNuxtConfig({
     },
     // 啟用 CSS 變量
     sassVariables: true,
+  },
+
+  sitemap: {
+    siteUrl: process.env.NUXT_PUBLIC_BASE_URL || 'http://localhost:3000',
   },
 })

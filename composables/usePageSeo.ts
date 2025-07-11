@@ -1,9 +1,29 @@
-import { useSeoMeta, useRoute, useRuntimeConfig } from '#imports'
+import {
+  useSeoMeta,
+  useRoute,
+  useRuntimeConfig,
+  useHead,
+  useLocaleHead,
+} from '#imports'
 
-export default function usePageSeo(title: string, description: string) {
+export default function usePageSeo(
+  title: string,
+  description: string,
+  image: string = '/vite.svg',
+) {
   const route = useRoute()
   const config = useRuntimeConfig()
   const baseUrl = config.public.baseUrl || ''
+
+  const { link: i18nLinks } = useLocaleHead({ addSeoAttributes: true })
+
+  useHead({
+    link: [
+      { rel: 'canonical', href: baseUrl + route.fullPath },
+      ...(i18nLinks || []),
+    ],
+    meta: [{ name: 'robots', content: 'index, follow' }],
+  })
 
   useSeoMeta({
     title,
@@ -12,8 +32,10 @@ export default function usePageSeo(title: string, description: string) {
     ogDescription: description,
     ogType: 'website',
     ogUrl: baseUrl + route.fullPath,
+    ogImage: baseUrl + image,
     twitterTitle: title,
     twitterDescription: description,
-    twitterCard: 'summary',
+    twitterCard: 'summary_large_image',
+    twitterImage: baseUrl + image,
   })
 }

@@ -56,11 +56,27 @@
 
 <script setup>
 import usePageSeo from '~/composables/usePageSeo'
+import { useHead, useRuntimeConfig } from '#imports'
 
 usePageSeo(
   '首頁 - DogFriend 專業看護媒合平台',
   '快速找到可靠看護，了解我們的服務與優勢',
 )
+// JSON-LD structured data for organization
+const config = useRuntimeConfig()
+useHead({
+  script: [
+    {
+      type: 'application/ld+json',
+      children: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Organization',
+        name: 'DogFriend',
+        url: config.public.baseUrl,
+      }),
+    },
+  ],
+})
 // home page
 </script>
 

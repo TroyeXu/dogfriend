@@ -12,3 +12,7 @@ This project uses ESLint, Prettier and Stylelint to keep the code style consiste
 - `npm run lint:style` runs Stylelint for CSS/SCSS files.
 - `npm run format` formats files with Prettier.
 
+## SEO Enhancements
+
+The project now includes canonical and hreflang links, robots.txt, and automatic sitemap generation. The home page also provides basic JSON-LD structured data.
+
