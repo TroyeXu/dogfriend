@@ -8,17 +8,14 @@
     </q-card>
 
     <q-timeline color="primary">
-      <q-timeline-entry title="步驟一" subtitle="註冊帳號" icon="person_add">
-        於平台註冊並填寫個人資料
-      </q-timeline-entry>
-      <q-timeline-entry title="步驟二" subtitle="搜尋看護" icon="search">
-        使用搜尋功能找到適合的人員
-      </q-timeline-entry>
-      <q-timeline-entry title="步驟三" subtitle="預約服務" icon="event">
-        聯繫我們確認排程
-      </q-timeline-entry>
-      <q-timeline-entry title="步驟四" subtitle="開始照護" icon="check_circle">
-        看護到府開始服務
+      <q-timeline-entry
+        v-for="(step, index) in steps"
+        :key="index"
+        :title="step.title"
+        :subtitle="step.subtitle"
+        :icon="step.icon"
+      >
+        {{ step.text }}
       </q-timeline-entry>
     </q-timeline>
 
@@ -29,7 +26,32 @@
 </template>
 
 <script setup>
+const steps = [
+  {
+    title: '步驟一',
+    subtitle: '註冊帳號',
+    icon: 'person_add',
+    text: '於平台註冊並填寫個人資料',
+  },
+  {
+    title: '步驟二',
+    subtitle: '搜尋看護',
+    icon: 'search',
+    text: '使用搜尋功能找到適合的人員',
+  },
+  {
+    title: '步驟三',
+    subtitle: '預約服務',
+    icon: 'event',
+    text: '聯繫我們確認排程',
+  },
+  {
+    title: '步驟四',
+    subtitle: '開始照護',
+    icon: 'check_circle',
+    text: '看護到府開始服務',
+  },
+]
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>
