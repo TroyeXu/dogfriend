@@ -17,6 +17,7 @@
           <q-btn flat to="/pricing" :label="$t('nav.pricing')" />
           <q-btn flat to="/about" :label="$t('nav.about')" />
           <q-btn flat to="/subsidy" :label="$t('nav.subsidy')" />
+          <q-btn flat to="/advantages" :label="$t('nav.advantages')" />
           <q-btn flat to="/blog" :label="$t('nav.blog')" />
           <q-btn flat to="/contact" :label="$t('nav.contact')" />
         </div>
@@ -61,6 +62,7 @@ const menuItems = [
   { key: 'pricing', to: '/pricing' },
   { key: 'about', to: '/about' },
   { key: 'subsidy', to: '/subsidy' },
+  { key: 'advantages', to: '/advantages' },
   { key: 'blog', to: '/blog' },
   { key: 'contact', to: '/contact' },
 ]
