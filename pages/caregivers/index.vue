@@ -7,6 +7,9 @@
 </template>
 
 <script setup>
+import usePageSeo from '~/composables/usePageSeo'
+
+usePageSeo('看護列表 - DogFriend', '瀏覽所有專業看護員，找到最合適的人選')
 import { storeToRefs } from 'pinia'
 import CaregiverCard from '../components/CaregiverCard.vue'
 import { useCaregiverStore } from '../stores/caregivers'

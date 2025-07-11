@@ -24,6 +24,9 @@
 </template>
 
 <script setup>
+import usePageSeo from '~/composables/usePageSeo'
+
+usePageSeo('看護詳情 - DogFriend', '查看看護員詳細資歷與技能')
 import { useRoute } from 'vue-router'
 import { useCaregiverStore } from '../stores/caregivers'
 
@@ -31,4 +34,3 @@ const route = useRoute()
 const store = useCaregiverStore()
 const caregiver = store.getById(route.params.id)
 </script>
-

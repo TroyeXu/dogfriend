@@ -1,6 +1,6 @@
 <template>
   <q-page class="q-pa-md flex flex-center">
-    <q-card flat bordered class="info-card q-pa-md" style="max-width: 380px;">
+    <q-card flat bordered class="info-card q-pa-md" style="max-width: 380px">
       <q-card-section class="text-center">
         <div class="text-h6 q-mb-sm">下載行動 App</div>
         <p>掃描 QR Code 或前往商店下載，隨時掌握服務進度。</p>
@@ -19,6 +19,9 @@
 </template>
 
 <script setup>
+import usePageSeo from '~/composables/usePageSeo'
+
+usePageSeo('下載 App - DogFriend', '取得 DogFriend 行動 App 隨時掌握服務進度')
 </script>
 
 <style scoped>
@@ -27,4 +30,3 @@
   height: 150px;
 }
 </style>
-

@@ -26,6 +26,9 @@
 </template>
 
 <script setup>
+import usePageSeo from '~/composables/usePageSeo'
+
+usePageSeo('使用指南 - DogFriend', '一步步教你如何使用 DogFriend 平台')
 const steps = [
   {
     title: '步驟一',

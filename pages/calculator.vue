@@ -857,6 +857,9 @@
 </template>
 
 <script setup>
+import usePageSeo from '~/composables/usePageSeo'
+
+usePageSeo('護理費計算器 - DogFriend', '快速計算並預估您的護理服務費用')
 import { Pie } from 'vue-chartjs'
 import { useCareService } from '~/composables/useCareService'
 

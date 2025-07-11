@@ -27,17 +27,19 @@
 </template>
 
 <script setup>
+import usePageSeo from '~/composables/usePageSeo'
+
+usePageSeo('補助資訊 - DogFriend', '了解政府與機構提供的照護補助')
 const subsidies = [
   {
     name: '長照補助',
     desc: '政府提供的長期照顧補助方案，依照失能等級給予費用補助。',
-    url: 'https://example.com/long-term-care'
+    url: 'https://example.com/long-term-care',
   },
   {
     name: '看護保險方案',
     desc: '民間保險公司推出的照護險，減輕長期看護費用負擔。',
-    url: 'https://example.com/caregiver-insurance'
-  }
+    url: 'https://example.com/caregiver-insurance',
+  },
 ]
 </script>
-

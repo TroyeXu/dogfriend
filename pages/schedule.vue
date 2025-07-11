@@ -10,5 +10,7 @@
 </template>
 
 <script setup>
-</script>
+import usePageSeo from '~/composables/usePageSeo'
 
+usePageSeo('排程管理 - DogFriend', '查看並管理您的照護排程')
+</script>

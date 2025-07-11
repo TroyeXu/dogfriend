@@ -5,29 +5,26 @@ import { defineNuxtConfig } from 'nuxt/config'
 export default defineNuxtConfig({
   // 添加相容性日期
   compatibilityDate: '2025-06-14',
-  modules: [
-    '@pinia/nuxt',
-    '@vite-pwa/nuxt',
-    '@nuxtjs/i18n',
-    'nuxt-quasar-ui'
-  ],
+  runtimeConfig: {
+    public: {
+      baseUrl: process.env.NUXT_PUBLIC_BASE_URL || 'http://localhost:3000',
+    },
+  },
+  modules: ['@pinia/nuxt', '@vite-pwa/nuxt', '@nuxtjs/i18n', 'nuxt-quasar-ui'],
   css: [
     'quasar/fonts',
     'quasar/animations',
     'quasar/icons',
     'quasar/css',
-    '~/assets/global.scss'
+    '~/assets/global.scss',
   ],
   vite: {
-    plugins: [
-   
-    ],
+    plugins: [],
     css: {
       preprocessorOptions: {
-        scss: {
-        }
-      }
-    }
+        scss: {},
+      },
+    },
   },
   pwa: {
     registerType: 'autoUpdate',
@@ -35,22 +32,22 @@ export default defineNuxtConfig({
       name: 'Care Calculator',
       short_name: 'CareCalc',
       description: 'Care service management and scheduling app',
-      theme_color: '#ffffff'
-    }
+      theme_color: '#ffffff',
+    },
   },
   i18n: {
     strategy: 'no_prefix',
     defaultLocale: 'zh',
     locales: [
       { code: 'en', language: 'en', file: 'en.json', name: 'English' },
-      { code: 'zh', language: 'zh-TW', file: 'zh.json', name: '中文' }
+      { code: 'zh', language: 'zh-TW', file: 'zh.json', name: '中文' },
     ],
     lazy: true,
     langDir: 'locales',
     detectBrowserLanguage: {
       useCookie: true,
       cookieKey: 'i18n_redirected',
-      redirectOn: 'root'
+      redirectOn: 'root',
     },
   },
 
@@ -67,13 +64,13 @@ export default defineNuxtConfig({
         // 這裡可以設置 Quasar 組件的默認屬性
         QBtn: {
           dense: true,
-          unelevated: true
+          unelevated: true,
         },
         QInput: {
           outlined: true,
-          dense: true
-        }
-      }
+          dense: true,
+        },
+      },
     },
     // 品牌顏色配置
     config: {
@@ -84,25 +81,25 @@ export default defineNuxtConfig({
         positive: '#21BA45',
         negative: '#C10015',
         info: '#31CCEC',
-        warning: '#F2C037'
+        warning: '#F2C037',
       },
       // 通知配置
       notify: {
         position: 'top-right',
-        timeout: 3000
+        timeout: 3000,
       },
       // 加載配置
       loading: {
-        delay: 400
-      }
+        delay: 400,
+      },
     },
     // 導入額外的字體和圖標
     extras: {
       font: 'roboto-font',
       fontIcons: ['material-icons'],
-      animations: 'all'
+      animations: 'all',
     },
     // 啟用 CSS 變量
-    sassVariables: true
-  }
+    sassVariables: true,
+  },
 })

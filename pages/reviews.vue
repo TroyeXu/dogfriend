@@ -6,8 +6,15 @@
 
         <div class="row items-center q-mt-sm">
           <span class="text-subtitle2 q-mr-sm">平均評分</span>
-          <q-rating :model-value="averageRating" readonly color="amber" size="sm" />
-          <q-badge color="primary" class="q-ml-sm">{{ averageRating.toFixed(1) }}</q-badge>
+          <q-rating
+            :model-value="averageRating"
+            readonly
+            color="amber"
+            size="sm"
+          />
+          <q-badge color="primary" class="q-ml-sm">{{
+            averageRating.toFixed(1)
+          }}</q-badge>
         </div>
 
         <q-list bordered class="rounded-borders q-mt-md">
@@ -26,7 +33,14 @@
 
         <q-form @submit.prevent="submitReview" class="q-mt-md">
           <q-input v-model="name" label="姓名" dense class="q-mb-sm" />
-          <q-input v-model="comment" label="評論" type="textarea" autogrow dense class="q-mb-sm" />
+          <q-input
+            v-model="comment"
+            label="評論"
+            type="textarea"
+            autogrow
+            dense
+            class="q-mb-sm"
+          />
           <div class="row items-center q-mb-md">
             <span class="text-subtitle2 q-mr-sm">評分</span>
             <q-rating v-model="rating" :max="5" color="amber" />
@@ -39,6 +53,9 @@
 </template>
 
 <script setup>
+import usePageSeo from '~/composables/usePageSeo'
+
+usePageSeo('用戶評價 - DogFriend', '查看其他用戶對 DogFriend 的評價與回饋')
 import { ref } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useReviewStore } from '../stores/reviews'
@@ -55,11 +72,10 @@ function submitReview() {
   store.addReview({
     name: name.value,
     comment: comment.value,
-    rating: rating.value
+    rating: rating.value,
   })
   name.value = ''
   comment.value = ''
   rating.value = 0
 }
 </script>
-

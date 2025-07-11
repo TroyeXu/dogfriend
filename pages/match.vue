@@ -1,18 +1,17 @@
 <template>
-<q-page class="q-pa-md">
-  <div class="text-h6 q-mb-md">看護媒合推薦</div>
-  <div v-if="recommended.length" class="caregiver-list">
-    <CaregiverCard
-      v-for="c in recommended"
-      :key="c.id"
-      :caregiver="c"
-    />
-  </div>
-  <div v-else>暫無推薦資料</div>
-</q-page>
+  <q-page class="q-pa-md">
+    <div class="text-h6 q-mb-md">看護媒合推薦</div>
+    <div v-if="recommended.length" class="caregiver-list">
+      <CaregiverCard v-for="c in recommended" :key="c.id" :caregiver="c" />
+    </div>
+    <div v-else>暫無推薦資料</div>
+  </q-page>
 </template>
 
 <script setup>
+import usePageSeo from '~/composables/usePageSeo'
+
+usePageSeo('媒合結果 - DogFriend', '查看與您需求相符的看護員名單')
 import { computed } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useCaregiverStore } from '../stores/caregivers'
@@ -36,4 +35,3 @@ const recommended = computed(() => {
   gap: 1rem;
 }
 </style>
-

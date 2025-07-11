@@ -1,6 +1,6 @@
 <template>
   <q-page class="q-pa-md flex flex-center">
-    <q-card flat bordered class="info-card" style="min-width:300px;">
+    <q-card flat bordered class="info-card" style="min-width: 300px">
       <q-card-section>
         <div class="text-h6 q-mb-md">登入</div>
         <LoginForm @success="onSuccess" />
@@ -14,6 +14,9 @@
 </template>
 
 <script setup>
+import usePageSeo from '~/composables/usePageSeo'
+
+usePageSeo('登入 - DogFriend', '登入帳戶管理您的服務與排程')
 import LoginForm from '../components/LoginForm.vue'
 import { useRouter } from 'vue-router'
 
@@ -23,4 +26,3 @@ function onSuccess() {
   router.push('/dashboard')
 }
 </script>
-

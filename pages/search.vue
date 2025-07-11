@@ -13,6 +13,9 @@
 </template>
 
 <script setup>
+import usePageSeo from '~/composables/usePageSeo'
+
+usePageSeo('搜尋服務 - DogFriend', '透過關鍵字快速搜尋照護資源')
 import { ref, computed } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useCaregiverStore } from '../stores/caregivers'
@@ -24,8 +27,8 @@ const query = ref('')
 
 const filteredCaregivers = computed(() => {
   if (!query.value) return caregivers.value
-  return caregivers.value.filter(c =>
-    c.name.includes(query.value) || c.skills.includes(query.value)
+  return caregivers.value.filter(
+    (c) => c.name.includes(query.value) || c.skills.includes(query.value),
   )
 })
 </script>

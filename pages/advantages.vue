@@ -23,6 +23,9 @@
 </template>
 
 <script setup>
+import usePageSeo from '~/composables/usePageSeo'
+
+usePageSeo('服務優勢 - DogFriend', '了解選擇 DogFriend 的四大優勢')
 const advantages = [
   { title: '快速媒合', desc: '透過演算法即時找到合適看護', icon: 'bolt' },
   { title: '專業審核', desc: '嚴格把關每位看護的資格', icon: 'verified' },

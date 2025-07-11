@@ -39,6 +39,9 @@
 </template>
 
 <script setup>
+import usePageSeo from '~/composables/usePageSeo'
+
+usePageSeo('資源中心 - DogFriend', '提供各類照護資源與文件下載')
 import { ref, computed } from 'vue'
 
 const articles = [
