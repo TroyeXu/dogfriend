@@ -7,19 +7,17 @@
       <q-separator />
       <q-list bordered>
         <q-expansion-item icon="home" label="居家照顧" class="q-px-sm">
-          <div class="q-pa-sm">
-            提供到府日常照料與生活協助。
-          </div>
+          <div class="q-pa-sm">提供到府日常照料與生活協助。</div>
         </q-expansion-item>
-        <q-expansion-item icon="local_hospital" label="醫院看護" class="q-px-sm">
-          <div class="q-pa-sm">
-            協助住院期間的照護需求。
-          </div>
+        <q-expansion-item
+          icon="local_hospital"
+          label="醫院看護"
+          class="q-px-sm"
+        >
+          <div class="q-pa-sm">協助住院期間的照護需求。</div>
         </q-expansion-item>
         <q-expansion-item icon="translate" label="外籍看護" class="q-px-sm">
-          <div class="q-pa-sm">
-            多語溝通、跨文化照護。
-          </div>
+          <div class="q-pa-sm">多語溝通、跨文化照護。</div>
         </q-expansion-item>
       </q-list>
       <q-card-actions align="right">
@@ -30,5 +28,7 @@
 </template>
 
 <script setup>
-</script>
+import usePageSeo from '~/composables/usePageSeo'
 
+usePageSeo('服務介紹 - DogFriend', '瞭解居家與醫院看護等多元服務項目')
+</script>

@@ -48,6 +48,12 @@
 </template>
 
 <script setup>
+import usePageSeo from '~/composables/usePageSeo'
+
+usePageSeo(
+  '關於我們 - DogFriend 專業看護媒合平台',
+  '認識 DogFriend 團隊與我們的使命',
+)
 const missions = [
   {
     title: '以人為本',

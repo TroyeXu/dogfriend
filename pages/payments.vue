@@ -23,6 +23,9 @@
 </template>
 
 <script setup>
+import usePageSeo from '~/composables/usePageSeo'
+
+usePageSeo('支付紀錄 - DogFriend', '查詢您的服務費用支付紀錄')
 import { storeToRefs } from 'pinia'
 import PaymentForm from '../components/PaymentForm.vue'
 import { usePaymentsStore } from '../stores/payments'
@@ -30,4 +33,3 @@ import { usePaymentsStore } from '../stores/payments'
 const store = usePaymentsStore()
 const { payments } = storeToRefs(store)
 </script>
-

@@ -16,15 +16,17 @@
 </template>
 
 <script setup>
+import usePageSeo from '~/composables/usePageSeo'
+
+usePageSeo('計費方案 - DogFriend', '查看各種護理服務的價格與方案')
 const columns = [
   { name: 'type', label: '方案', field: 'type' },
   { name: 'price', label: '價格', field: 'price' },
-  { name: 'desc', label: '內容', field: 'desc' }
+  { name: 'desc', label: '內容', field: 'desc' },
 ]
 
 const plans = [
   { type: '按時付費', price: 'NT$300/時', desc: '彈性選擇看護時數' },
-  { type: '包班制', price: 'NT$6000/天', desc: '全天候專業照護' }
+  { type: '包班制', price: 'NT$6000/天', desc: '全天候專業照護' },
 ]
 </script>
-

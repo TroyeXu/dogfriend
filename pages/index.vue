@@ -55,6 +55,12 @@
 </template>
 
 <script setup>
+import usePageSeo from '~/composables/usePageSeo'
+
+usePageSeo(
+  '首頁 - DogFriend 專業看護媒合平台',
+  '快速找到可靠看護，了解我們的服務與優勢',
+)
 // home page
 </script>
 

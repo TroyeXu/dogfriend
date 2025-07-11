@@ -43,6 +43,9 @@
 </template>
 
 <script setup>
+import usePageSeo from '~/composables/usePageSeo'
+
+usePageSeo('個人儀表板 - DogFriend', '快速查看推薦看護及即將到來的排程')
 import { computed, ref } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useAuthStore } from '~/stores/auth'
@@ -60,7 +63,6 @@ const recommended = computed(() => {
 
 const schedule = ref([
   { date: '2024-06-20', time: '10:00', caregiver: '王小明' },
-  { date: '2024-06-22', time: '14:00', caregiver: '李小美' }
+  { date: '2024-06-22', time: '14:00', caregiver: '李小美' },
 ])
 </script>
-

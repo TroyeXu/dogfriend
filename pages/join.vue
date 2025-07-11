@@ -44,6 +44,9 @@
 </template>
 
 <script setup>
+import usePageSeo from '~/composables/usePageSeo'
+
+usePageSeo('成為看護員 - DogFriend', '加入我們的看護團隊，展現您的專業')
 </script>
 
 <style scoped>
@@ -51,4 +54,3 @@
   border-radius: 8px;
 }
 </style>
-

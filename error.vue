@@ -1,12 +1,15 @@
 <script setup lang="ts">
+import usePageSeo from '~/composables/usePageSeo'
+
+usePageSeo('錯誤 - DogFriend', '發生錯誤時的說明頁面')
 const props = defineProps({
   error: Object,
-});
+})
 
 // 提供清除錯誤的功能，返回上一頁或首頁
 const handleError = () => {
-  clearError({ redirect: props.error?.statusCode === 404 ? '/' : '' });
-};
+  clearError({ redirect: props.error?.statusCode === 404 ? '/' : '' })
+}
 </script>
 
 <template>

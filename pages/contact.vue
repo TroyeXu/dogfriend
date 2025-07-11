@@ -48,6 +48,9 @@
 </template>
 
 <script setup>
+import usePageSeo from '~/composables/usePageSeo'
+
+usePageSeo('聯繫我們 - DogFriend', '歡迎透過電話或 Email 與我們聯絡')
 import { ref } from 'vue'
 
 const name = ref('')
