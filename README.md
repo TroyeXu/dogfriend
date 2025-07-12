@@ -16,3 +16,14 @@ This project uses ESLint, Prettier and Stylelint to keep the code style consiste
 
 The project now includes canonical and hreflang links, robots.txt, and automatic sitemap generation. The home page also provides basic JSON-LD structured data.
 
+### Additional SEO Features
+
+- A global `BreadcrumbList` JSON-LD is injected on every page for better indexing.
+- The **services** page outputs a `BreadcrumbList` and multiple `Service` objects in JSON-LD so that search engines better understand available care options.
+- The **about** and **contact** pages include dedicated JSON-LD descriptions.
+- Images use native lazy-loading to improve performance and Core Web Vitals.
+- The **resources** page now outputs a `FAQPage` schema for its frequently asked questions.
+- The **reviews** page includes `AggregateRating` and individual review data in JSON-LD.
+- The **pricing** page exposes an `OfferCatalog` structured data block with each plan's price.
+- The default layout preconnects to Google Fonts for faster font loading.
+
