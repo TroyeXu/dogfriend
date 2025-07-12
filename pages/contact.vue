@@ -49,9 +49,28 @@
 
 <script setup>
 import usePageSeo from '~/composables/usePageSeo'
+import { useRuntimeConfig, useRoute, useHead } from '#imports'
+import { ref } from 'vue'
 
 usePageSeo('聯繫我們 - DogFriend', '歡迎透過電話或 Email 與我們聯絡')
-import { ref } from 'vue'
+
+const route = useRoute()
+const config = useRuntimeConfig()
+const baseUrl = config.public.baseUrl || ''
+useHead({
+  script: [
+    {
+      type: 'application/ld+json',
+      children: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'ContactPage',
+        name: '聯繫我們 - DogFriend',
+        url: baseUrl + route.fullPath,
+        description: '歡迎透過電話或 Email 與我們聯絡',
+      }),
+    },
+  ],
+})
 
 const name = ref('')
 const email = ref('')

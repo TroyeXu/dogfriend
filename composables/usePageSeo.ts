@@ -23,6 +23,29 @@ export default function usePageSeo(
       ...(i18nLinks || []),
     ],
     meta: [{ name: 'robots', content: 'index, follow' }],
+    script: [
+      {
+        type: 'application/ld+json',
+        children: JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            {
+              '@type': 'ListItem',
+              position: 1,
+              name: '首頁',
+              item: baseUrl + '/',
+            },
+            {
+              '@type': 'ListItem',
+              position: 2,
+              name: title,
+              item: baseUrl + route.fullPath,
+            },
+          ],
+        }),
+      },
+    ],
   })
 
   useSeoMeta({

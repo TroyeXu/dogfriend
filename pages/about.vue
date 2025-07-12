@@ -49,11 +49,30 @@
 
 <script setup>
 import usePageSeo from '~/composables/usePageSeo'
+import { useRuntimeConfig, useRoute, useHead } from '#imports'
 
 usePageSeo(
   '關於我們 - DogFriend 專業看護媒合平台',
   '認識 DogFriend 團隊與我們的使命',
 )
+
+const route = useRoute()
+const config = useRuntimeConfig()
+const baseUrl = config.public.baseUrl || ''
+useHead({
+  script: [
+    {
+      type: 'application/ld+json',
+      children: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'AboutPage',
+        name: '關於我們 - DogFriend',
+        url: baseUrl + route.fullPath,
+        description: '認識 DogFriend 團隊與我們的使命',
+      }),
+    },
+  ],
+})
 const missions = [
   {
     title: '以人為本',

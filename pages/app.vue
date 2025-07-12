@@ -8,6 +8,7 @@
           class="qr-code q-my-md"
           src="https://api.qrserver.com/v1/create-qr-code/?data=https://www.example.com/app&size=150x150"
           alt="App QR Code"
+          loading="lazy"
         />
         <div class="row justify-center q-gutter-sm">
           <q-btn flat color="primary" label="App Store" />
