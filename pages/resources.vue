@@ -43,6 +43,7 @@ import usePageSeo from '~/composables/usePageSeo'
 
 usePageSeo('資源中心 - DogFriend', '提供各類照護資源與文件下載')
 import { ref, computed } from 'vue'
+import { useHead, useRuntimeConfig, useRoute } from '#imports'
 
 const articles = [
   '如何選擇適合的看護員',
@@ -69,5 +70,29 @@ const filteredFaqs = computed(() => {
   return faqs.filter(
     (f) => f.q.includes(faqQuery.value) || f.a.includes(faqQuery.value),
   )
+})
+
+const route = useRoute()
+const config = useRuntimeConfig()
+const baseUrl = config.public.baseUrl || ''
+
+useHead({
+  script: [
+    {
+      type: 'application/ld+json',
+      children: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        name: '資源中心 - DogFriend',
+        url: baseUrl + route.fullPath,
+        description: '提供各類照護資源與文件下載',
+        mainEntity: faqs.map((f) => ({
+          '@type': 'Question',
+          name: f.q,
+          acceptedAnswer: { '@type': 'Answer', text: f.a },
+        })),
+      }),
+    },
+  ],
 })
 </script>

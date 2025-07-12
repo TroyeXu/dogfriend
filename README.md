@@ -22,4 +22,6 @@ The project now includes canonical and hreflang links, robots.txt, and automatic
 - The **services** page outputs a `BreadcrumbList` and multiple `Service` objects in JSON-LD so that search engines better understand available care options.
 - The **about** and **contact** pages include dedicated JSON-LD descriptions.
 - Images use native lazy-loading to improve performance and Core Web Vitals.
+- The **resources** page now outputs a `FAQPage` schema for its frequently asked questions.
+- The **reviews** page includes `AggregateRating` and individual review data in JSON-LD.
 
