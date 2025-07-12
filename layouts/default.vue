@@ -52,6 +52,7 @@
 <script setup>
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { useHead } from '#imports'
 
 const drawer = ref(false)
 const { locale } = useI18n()
@@ -66,4 +67,11 @@ const menuItems = [
   { key: 'blog', to: '/blog' },
   { key: 'contact', to: '/contact' },
 ]
+
+useHead({
+  link: [
+    { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+    { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
+  ],
+})
 </script>

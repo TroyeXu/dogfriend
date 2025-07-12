@@ -56,9 +56,10 @@
 import usePageSeo from '~/composables/usePageSeo'
 
 usePageSeo('用戶評價 - DogFriend', '查看其他用戶對 DogFriend 的評價與回饋')
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useReviewStore } from '../stores/reviews'
+import { useHead, useRuntimeConfig, useRoute } from '#imports'
 
 const store = useReviewStore()
 const { reviews, averageRating } = storeToRefs(store)
@@ -78,4 +79,37 @@ function submitReview() {
   comment.value = ''
   rating.value = 0
 }
+
+const route = useRoute()
+const config = useRuntimeConfig()
+const baseUrl = config.public.baseUrl || ''
+
+const reviewJson = computed(() =>
+  JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: 'DogFriend 照護服務',
+    url: baseUrl + route.fullPath,
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: averageRating.value,
+      reviewCount: reviews.value.length,
+    },
+    review: reviews.value.map((r) => ({
+      '@type': 'Review',
+      reviewRating: { '@type': 'Rating', ratingValue: r.rating },
+      author: { '@type': 'Person', name: r.name },
+      reviewBody: r.comment,
+    })),
+  }),
+)
+
+useHead({
+  script: [
+    {
+      type: 'application/ld+json',
+      children: reviewJson,
+    },
+  ],
+})
 </script>
