@@ -16,6 +16,7 @@ interface _GlobalComponents {
     'ConsultationForm': typeof import("../components/ConsultationForm.vue")['default']
     'HelloWorld': typeof import("../components/HelloWorld.vue")['default']
     'LoginForm': typeof import("../components/LoginForm.vue")['default']
+    'PaymentForm': typeof import("../components/PaymentForm.vue")['default']
     'RegisterForm': typeof import("../components/RegisterForm.vue")['default']
     'NuxtWelcome': typeof import("../node_modules/nuxt/dist/app/components/welcome.vue")['default']
     'NuxtLayout': typeof import("../node_modules/nuxt/dist/app/components/nuxt-layout")['default']
@@ -162,6 +163,7 @@ interface _GlobalComponents {
     'QUploaderAddTrigger': typeof import("quasar")['QUploaderAddTrigger']
     'QVideo': typeof import("quasar")['QVideo']
     'QVirtualScroll': typeof import("quasar")['QVirtualScroll']
+    'SiteLink': typeof import("../node_modules/nuxt-site-config/dist/runtime/nuxt/component/SiteLink.vue")['default']
     'NuxtPage': typeof import("../node_modules/nuxt/dist/pages/runtime/page")['default']
     'NoScript': typeof import("../node_modules/nuxt/dist/head/runtime/components")['NoScript']
     'Link': typeof import("../node_modules/nuxt/dist/head/runtime/components")['Link']
@@ -178,6 +180,7 @@ interface _GlobalComponents {
     'LazyConsultationForm': LazyComponent<typeof import("../components/ConsultationForm.vue")['default']>
     'LazyHelloWorld': LazyComponent<typeof import("../components/HelloWorld.vue")['default']>
     'LazyLoginForm': LazyComponent<typeof import("../components/LoginForm.vue")['default']>
+    'LazyPaymentForm': LazyComponent<typeof import("../components/PaymentForm.vue")['default']>
     'LazyRegisterForm': LazyComponent<typeof import("../components/RegisterForm.vue")['default']>
     'LazyNuxtWelcome': LazyComponent<typeof import("../node_modules/nuxt/dist/app/components/welcome.vue")['default']>
     'LazyNuxtLayout': LazyComponent<typeof import("../node_modules/nuxt/dist/app/components/nuxt-layout")['default']>
@@ -324,6 +327,7 @@ interface _GlobalComponents {
     'LazyQUploaderAddTrigger': LazyComponent<typeof import("quasar")['QUploaderAddTrigger']>
     'LazyQVideo': LazyComponent<typeof import("quasar")['QVideo']>
     'LazyQVirtualScroll': LazyComponent<typeof import("quasar")['QVirtualScroll']>
+    'LazySiteLink': LazyComponent<typeof import("../node_modules/nuxt-site-config/dist/runtime/nuxt/component/SiteLink.vue")['default']>
     'LazyNuxtPage': LazyComponent<typeof import("../node_modules/nuxt/dist/pages/runtime/page")['default']>
     'LazyNoScript': LazyComponent<typeof import("../node_modules/nuxt/dist/head/runtime/components")['NoScript']>
     'LazyLink': LazyComponent<typeof import("../node_modules/nuxt/dist/head/runtime/components")['Link']>
@@ -346,6 +350,7 @@ export const CaregiverCard: typeof import("../components/CaregiverCard.vue")['de
 export const ConsultationForm: typeof import("../components/ConsultationForm.vue")['default']
 export const HelloWorld: typeof import("../components/HelloWorld.vue")['default']
 export const LoginForm: typeof import("../components/LoginForm.vue")['default']
+export const PaymentForm: typeof import("../components/PaymentForm.vue")['default']
 export const RegisterForm: typeof import("../components/RegisterForm.vue")['default']
 export const NuxtWelcome: typeof import("../node_modules/nuxt/dist/app/components/welcome.vue")['default']
 export const NuxtLayout: typeof import("../node_modules/nuxt/dist/app/components/nuxt-layout")['default']
@@ -492,6 +497,7 @@ export const QUploader: typeof import("quasar")['QUploader']
 export const QUploaderAddTrigger: typeof import("quasar")['QUploaderAddTrigger']
 export const QVideo: typeof import("quasar")['QVideo']
 export const QVirtualScroll: typeof import("quasar")['QVirtualScroll']
+export const SiteLink: typeof import("../node_modules/nuxt-site-config/dist/runtime/nuxt/component/SiteLink.vue")['default']
 export const NuxtPage: typeof import("../node_modules/nuxt/dist/pages/runtime/page")['default']
 export const NoScript: typeof import("../node_modules/nuxt/dist/head/runtime/components")['NoScript']
 export const Link: typeof import("../node_modules/nuxt/dist/head/runtime/components")['Link']
@@ -508,6 +514,7 @@ export const LazyCaregiverCard: LazyComponent<typeof import("../components/Careg
 export const LazyConsultationForm: LazyComponent<typeof import("../components/ConsultationForm.vue")['default']>
 export const LazyHelloWorld: LazyComponent<typeof import("../components/HelloWorld.vue")['default']>
 export const LazyLoginForm: LazyComponent<typeof import("../components/LoginForm.vue")['default']>
+export const LazyPaymentForm: LazyComponent<typeof import("../components/PaymentForm.vue")['default']>
 export const LazyRegisterForm: LazyComponent<typeof import("../components/RegisterForm.vue")['default']>
 export const LazyNuxtWelcome: LazyComponent<typeof import("../node_modules/nuxt/dist/app/components/welcome.vue")['default']>
 export const LazyNuxtLayout: LazyComponent<typeof import("../node_modules/nuxt/dist/app/components/nuxt-layout")['default']>
@@ -654,6 +661,7 @@ export const LazyQUploader: LazyComponent<typeof import("quasar")['QUploader']>
 export const LazyQUploaderAddTrigger: LazyComponent<typeof import("quasar")['QUploaderAddTrigger']>
 export const LazyQVideo: LazyComponent<typeof import("quasar")['QVideo']>
 export const LazyQVirtualScroll: LazyComponent<typeof import("quasar")['QVirtualScroll']>
+export const LazySiteLink: LazyComponent<typeof import("../node_modules/nuxt-site-config/dist/runtime/nuxt/component/SiteLink.vue")['default']>
 export const LazyNuxtPage: LazyComponent<typeof import("../node_modules/nuxt/dist/pages/runtime/page")['default']>
 export const LazyNoScript: LazyComponent<typeof import("../node_modules/nuxt/dist/head/runtime/components")['NoScript']>
 export const LazyLink: LazyComponent<typeof import("../node_modules/nuxt/dist/head/runtime/components")['Link']>
